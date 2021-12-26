@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
             ToogleMainUI();
 
         if (Input.GetKeyDown(KeyCode.I))
-            inventoryUI.OnInventorySwitch();
+            inventoryUI.TurnOnInventory();
     }
 
     public void ToogleUI(UIObjectType type)
@@ -47,11 +47,11 @@ public class UIManager : MonoBehaviour
                 GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
                 if (ContainerInventory.Instance.SelectedContainer != null)
                 {
-                    ContainerInventoryUI.Instance.TurnOnInventory();
+                   ContainerInventoryUI.Instance.TurnOnInventory();
                 }
                 else
                 {
-                    ContainerInventoryUI.Instance.TurnOffIventory();
+                    //ContainerInventoryUI.Instance.TurnOffIventory();
                 }
                 break;
         }

@@ -43,7 +43,7 @@ public class PlayerMovementController : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-        animations.SetWithoutGunMove(x, z);
+        //animations.SetWithoutGunMove(x, z);
 
         switch (state)
         {
@@ -107,14 +107,14 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * walkSpeed * Time.deltaTime);
-        animations.SetBoolRunning(false);
+        //animations.SetBoolRunning(false);
     }
 
     private void Run(float x, float z)
     {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * runSpeed * Time.deltaTime);
-        animations.SetBoolRunning(true);
+        //animations.SetBoolRunning(true);
     }
 
     private void SetState(State to)

@@ -24,10 +24,7 @@ public class ItemCell : MonoBehaviour
 
     public void OnClickUp()
     {
-        itemInCell.Count--;
-        if (itemInCell.Count == 0)
-            Destroy(this);
-        /*if (itemInCell.State == ItemState.InContainer)
+        if (itemInCell.State == ItemState.InContainer)
         {
             PlayerInventory.Instance.AddItemInInventory(itemInCell);
             ContainerInventory.Instance.RemoveItemFromContainer(itemInCell);
@@ -35,9 +32,10 @@ public class ItemCell : MonoBehaviour
         }
         else
         {
-            ContainerInventory.Instance.AddItemInContainer(itemInCell);
-            PlayerInventory.Instance.RemoveItemFromInventory(itemInCell);
-            Destroy(this);
-        }*/
+            //ContainerInventory.Instance.AddItemInContainer(itemInCell);
+            //PlayerInventory.Instance.RemoveItemFromInventory(itemInCell);
+            PlayerInventory.Instance.DropItem(itemInCell);
+            //Destroy(this);
+        }
     }
 }

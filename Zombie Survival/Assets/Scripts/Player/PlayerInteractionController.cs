@@ -5,16 +5,21 @@ using UnityEngine;
 public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] private Camera fpsCam;
-    [SerializeField] private LayerMask interactiveLayer;
-    [SerializeField] private float range = 10;
+    //[SerializeField] private LayerMask interactiveLayer;
+    [SerializeField] private float range = 3;
 
     public Interactive lastInteractive;
 
     private void Update()
     {
+        InteractiveRay();
+    }
+
+    private void InteractiveRay()
+    {
         Interactive interactive = null;
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range, interactiveLayer))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
             interactive = hit.transform.GetComponent<Interactive>();
         }

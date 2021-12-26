@@ -5,6 +5,8 @@ using UnityEngine;
 public enum ItemState { InInventory, InContainer, Dropped}
 public class PlayerInventory : MonoBehaviour
 {
+    [SerializeField] private Transform dropPos;
+
     public List<ItemInInventory> ItemsInInventory;
 
     public static PlayerInventory Instance;
@@ -15,6 +17,14 @@ public class PlayerInventory : MonoBehaviour
             Destroy(Instance);
 
         Instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+           // DropItem(ItemsInInventory[0]);
+        }
     }
 
     public void AddItemInInventory(ItemInInventory item)
@@ -49,6 +59,24 @@ public class PlayerInventory : MonoBehaviour
                 return ItemsInInventory[i];
 
         return null;
+    }
+
+    public void DropItem(ItemInInventory item)
+    {
+        DroppedItem dropped = Instantiate(item.ItemInfo.ItemModel, 
+            dropPos.position, Quaternion.identity).AddComponent<DroppedItem>();
+        ItemInInventory dropItem = new ItemInInventory();
+        dropItem.ItemInfo = GetItemByInfo(item.ItemInfo).ItemInfo;
+        dropItem.Count = 1;
+        dropItem.State = ItemState.Dropped;
+        dropped.Item = dropItem;
+        GetItemByInfo(item.ItemInfo).Count--;
+        if (GetItemByInfo(item.ItemInfo).Count == 0)
+        {
+            RemoveItemFromInventory(item);
+        }
+
+        PlayerInventoryUI.Instance.UpdateInventoryUI();
     }
 
     public void SortInventory()
