@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(CharacterController), typeof(Noise))]
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private CharacterAnimations animations;
@@ -10,6 +10,10 @@ public class PlayerMovementController : MonoBehaviour
     [Space(7)]
     [SerializeField] private float walkSpeed = 6;
     [SerializeField] private float runSpeed = 12;
+
+    [Header("Noise")]
+    [SerializeField] private float walkNoiseRange = 4;
+    [SerializeField] private float runNoiseRange = 9;
 
     [Space(7)]
     [SerializeField] private Transform groundCheck;
@@ -19,9 +23,10 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float jumpHeight = 12;
 
     private CharacterController controller;
+    private Noise noise;
 
     private enum State { IDLE, WALK, RUN, JUMP, FALL}
-    private State state = State.IDLE;
+    [SerializeField] private State state = State.IDLE;
     private State lastState;
 
     private Vector3 velocity;
@@ -30,6 +35,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
+        noise = GetComponent<Noise>();
     }
 
     private void Update()
@@ -43,7 +49,6 @@ public class PlayerMovementController : MonoBehaviour
 
         float x = Input.GetAxisRaw("Horizontal");
         float z = Input.GetAxisRaw("Vertical");
-        //animations.SetWithoutGunMove(x, z);
 
         switch (state)
         {
@@ -62,6 +67,8 @@ public class PlayerMovementController : MonoBehaviour
                 if (x == 0 && z == 0)
                     SetState(State.IDLE);
 
+                noise.GenerateNoise(transform.position, walkNoiseRange);
+
                 if (Input.GetButtonDown("Jump"))
                     SetState(State.JUMP);
 
@@ -73,6 +80,8 @@ public class PlayerMovementController : MonoBehaviour
                 Run(x, z);
                 if (x == 0 && z == 0)
                     SetState(State.IDLE);
+
+                noise.GenerateNoise(transform.position, runNoiseRange);
 
                 if (!Input.GetKey(KeyCode.LeftShift))
                     SetState(State.WALK);
@@ -107,14 +116,12 @@ public class PlayerMovementController : MonoBehaviour
     {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * walkSpeed * Time.deltaTime);
-        //animations.SetBoolRunning(false);
     }
 
     private void Run(float x, float z)
     {
         Vector3 move = transform.right * x + transform.forward * z;
         controller.Move(move * runSpeed * Time.deltaTime);
-        //animations.SetBoolRunning(true);
     }
 
     private void SetState(State to)

@@ -45,8 +45,6 @@ public class PlayerCombatController : MonoBehaviour
                 hit.rigidbody.AddForce(-hit.normal * CurrentWeapon.ImpactForce);
             }
         }
-
-        gameObject.AddComponent<Noise>().GenerateNoise(CurrentWeapon.ShootingNoise, transform.position);
     }
 
     private void OnDrawGizmos()

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface ICreature 
 {
-    public void OnHeardNoise();
-
+    public void OnHeardNoise(Vector3 noisePos);
+    public void OnSeePlayer();
+    public void OnMetObstacle();
 }
