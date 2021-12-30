@@ -8,7 +8,19 @@ public class PlayerInteractionController : MonoBehaviour
     //[SerializeField] private LayerMask interactiveLayer;
     [SerializeField] private float range = 3;
 
+    private Interactive interactive;
+
     public Interactive lastInteractive;
+
+    public static PlayerInteractionController Instance;
+
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(this);
+
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -17,7 +29,7 @@ public class PlayerInteractionController : MonoBehaviour
 
     private void InteractiveRay()
     {
-        Interactive interactive = null;
+        interactive = null;
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
@@ -31,15 +43,17 @@ public class PlayerInteractionController : MonoBehaviour
                 interactive.OnFocused();
                 lastInteractive = interactive;
             }
-
-            if (Input.GetKeyDown(KeyCode.F))
-                interactive.OnInteractive();
         }
         else if (lastInteractive != null)
         {
             lastInteractive.OnDisfocused();
             lastInteractive = null;
         }
+    }
+
+    public void Interactive()
+    {
+        interactive.OnInteractive();
     }
 
     private void OnDrawGizmos()
