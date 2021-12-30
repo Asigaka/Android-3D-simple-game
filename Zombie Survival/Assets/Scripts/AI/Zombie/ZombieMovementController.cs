@@ -7,13 +7,14 @@ using UnityEngine.AI;
 public class ZombieMovementController : MonoBehaviour, ICreature
 {
     [SerializeField] private NavMeshAgent agent;
+    [SerializeField] private ZombieCombatController combatController;
 
     private Vector3 targetPosition;
     public Vector3 lastTargetPos;
 
     private FieldOfView fov;
 
-    private enum ZombieState { Idle, WalkToTarget, PursueTarget}
+    private enum ZombieState { Idle, WalkToTarget, PursueTarget, Attack}
     [SerializeField]
     private ZombieState currentState = ZombieState.Idle;
     private ZombieState previousState;
@@ -49,6 +50,11 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 break;
             case ZombieState.WalkToTarget:
+                if (combatController.CheckObjectForward() != null)
+                {
+                    combatController.Attack(combatController.CheckObjectForward());
+                }
+
                 WalkToLastTarget();
                 if (fov.IsSeeHuman)
                 {
@@ -64,6 +70,11 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 break;
             case ZombieState.PursueTarget:
+                if (combatController.CheckObjectForward() != null)
+                {
+                    combatController.Attack(combatController.CheckObjectForward());
+                }
+
                 if (fov.IsSeeHuman)
                 {
                     OnSeePlayer();
@@ -72,6 +83,9 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 {
                     SetState(ZombieState.Idle);
                 }
+                break;
+            case ZombieState.Attack:
+
                 break;
         }
     }
