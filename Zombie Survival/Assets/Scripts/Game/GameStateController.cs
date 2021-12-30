@@ -24,22 +24,22 @@ public class GameStateController : MonoBehaviour
             case GameState.Playing:
                 Time.timeScale = 1;
                 Cursor.lockState = CursorLockMode.Locked;
-                PlayerCamera.Instance.CanRotate = true;
+                //PlayerCamera.Instance.CanRotate = true;
                 break;
             case GameState.Menu:
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
-                PlayerCamera.Instance.CanRotate = false;
+                //PlayerCamera.Instance.CanRotate = false;
                 break;
             case GameState.Pause:
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.None;
-                PlayerCamera.Instance.CanRotate = false;
+                //PlayerCamera.Instance.CanRotate = false;
                 break;
             case GameState.InteractiveUI:
                 Time.timeScale = 0.2f;
                 Cursor.lockState = CursorLockMode.None;
-                PlayerCamera.Instance.CanRotate = false;
+                //PlayerCamera.Instance.CanRotate = false;
                 break;
         }
     }

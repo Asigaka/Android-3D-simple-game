@@ -27,14 +27,14 @@ public class UIManager : MonoBehaviour
         ToogleUI(startType);
     }
 
-    private void Update()
+    /*private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             ToogleMainUI();
 
         if (Input.GetKeyDown(KeyCode.I))
             inventoryUI.TurnOnInventory();
-    }
+    }*/
 
     public void ToogleUI(UIObjectType type)
     {

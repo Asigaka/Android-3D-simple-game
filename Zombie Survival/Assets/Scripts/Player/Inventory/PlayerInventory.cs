@@ -19,14 +19,6 @@ public class PlayerInventory : MonoBehaviour
         Instance = this;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-           // DropItem(ItemsInInventory[0]);
-        }
-    }
-
     public void AddItemInInventory(ItemInInventory item)
     {
         if (GetItemByInfo(item.ItemInfo) != null)
