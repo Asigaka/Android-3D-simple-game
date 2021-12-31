@@ -9,10 +9,11 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private float range = 3;
 
     private Interactive interactive;
-
-    public Interactive lastInteractive;
+    private Interactive lastInteractive;
 
     public static PlayerInteractionController Instance;
+
+    public Interactive Interactive { get => interactive; private set => interactive = value; }
 
     private void Awake()
     {
@@ -51,7 +52,7 @@ public class PlayerInteractionController : MonoBehaviour
         }
     }
 
-    public void Interactive()
+    public void OnInteractive()
     {
         interactive.OnInteractive();
     }

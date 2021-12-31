@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UIObjectType { HUD, Inventory}
+public enum UIObjectType { HUD, Inventory, Container}
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<UIObject> UIObjects;
     [SerializeField] private UIObjectType startType;
+    [SerializeField] private GameObject interactiveBtn;
 
     private PlayerInventoryUI inventoryUI;
 
@@ -36,6 +37,11 @@ public class UIManager : MonoBehaviour
             inventoryUI.TurnOnInventory();
     }*/
 
+    private void Update()
+    {
+        interactiveBtn.SetActive(PlayerInteractionController.Instance.Interactive != null);
+    }
+
     public void ToogleUI(UIObjectType type)
     {
         switch (type)
@@ -45,14 +51,9 @@ public class UIManager : MonoBehaviour
                 break;
             case UIObjectType.Inventory:
                 GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
-                if (ContainerInventory.Instance.SelectedContainer != null)
-                {
-                   ContainerInventoryUI.Instance.TurnOnInventory();
-                }
-                else
-                {
-                    //ContainerInventoryUI.Instance.TurnOffIventory();
-                }
+                break;
+            case UIObjectType.Container:
+                GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
                 break;
         }
 

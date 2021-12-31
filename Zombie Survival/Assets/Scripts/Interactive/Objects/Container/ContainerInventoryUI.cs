@@ -1,12 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class ContainerInventoryUI : MonoBehaviour
 {
-    [SerializeField] private GameObject inventoryPanel;
+    [SerializeField] private GameObject itemPanel;
+    [SerializeField] private Transform itemModelPos;
+    [SerializeField] private TextMeshProUGUI itemNameText;
+    [SerializeField] private TextMeshProUGUI itemDescriptionText;
+    [SerializeField] private ItemCell itemCell;
+
+    [Space(7)]
     [SerializeField] private GameObject itemCellPrefab;
-    [SerializeField] private GameObject movingObject;
     [SerializeField] private Transform inventoryContent;
 
     private ContainerInventory containerInventory;
@@ -26,31 +32,43 @@ public class ContainerInventoryUI : MonoBehaviour
         containerInventory = ContainerInventory.Instance;
     }
 
-    public void OnInventorySwitch()
-    {
-        if (!inventoryPanel.activeSelf)
-            TurnOnInventory();
-        else
-            TurnOffIventory();
-    }
-
     public void TurnOnInventory()
     {
         UpdateInventoryUI();
-        inventoryPanel.SetActive(true);
+        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
     }
 
     public void TurnOffIventory()
     {
-        inventoryPanel.SetActive(false);
         UIManager.Instance.ToogleMainUI();
     }
 
     public void UpdateInventoryUI()
     {
+        itemCell = null;
         ClearItemsUI();
         SpawnItemsUI();
+        itemPanel.SetActive(false);
     }
+
+    public void TurnOnItemPanel(ItemInInventory item, ItemCell itemCell)
+    {
+        if (itemModelPos.childCount != 0)
+            Destroy(itemModelPos.GetChild(0).gameObject);
+
+        Instantiate(item.ItemInfo.ItemModel, itemModelPos).layer = 5;
+        this.itemCell = itemCell;
+        itemPanel.SetActive(true);
+        itemNameText.text = item.ItemInfo.Name;
+        itemDescriptionText.text = item.ItemInfo.Description;
+    }
+
+    public void TakeSelectedItem()
+    {
+        PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
+        ContainerInventory.Instance.RemoveItemFromContainer(itemCell.ItemInCell);
+        Destroy(itemCell.gameObject);
+    }                                      
 
     private void SpawnItemsUI()
     {

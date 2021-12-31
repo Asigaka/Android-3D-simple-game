@@ -12,6 +12,8 @@ public class ItemCell : MonoBehaviour
 
     private ItemInInventory itemInCell;
 
+    public ItemInInventory ItemInCell { get => itemInCell; set => itemInCell = value; }
+
     public void SetValues(ItemInInventory item)
     {
         itemInCell = item;
@@ -26,16 +28,11 @@ public class ItemCell : MonoBehaviour
     {
         if (itemInCell.State == ItemState.InContainer)
         {
-            PlayerInventory.Instance.AddItemInInventory(itemInCell);
-            ContainerInventory.Instance.RemoveItemFromContainer(itemInCell);
-            Destroy(this);
+             ContainerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);
         }
         else
         {
-            //ContainerInventory.Instance.AddItemInContainer(itemInCell);
-            //PlayerInventory.Instance.RemoveItemFromInventory(itemInCell);
-            PlayerInventory.Instance.DropItem(itemInCell);
-            //Destroy(this);
+             PlayerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);         
         }
     }
 }

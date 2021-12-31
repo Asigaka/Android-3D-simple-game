@@ -54,7 +54,7 @@ public class ContainerInventory : MonoBehaviour
     {
         SelectedContainer = container;
         ContainerInventoryUI.Instance.UpdateInventoryUI();
-        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
+        UIManager.Instance.ToogleUI(UIObjectType.Container);
     }
 
     public void CloseContainer()

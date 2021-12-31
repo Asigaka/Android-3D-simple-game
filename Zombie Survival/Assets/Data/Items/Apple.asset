@@ -15,5 +15,5 @@ MonoBehaviour:
   ItemModel: {fileID: 5559497688089568796, guid: 4f6b31ca8c120bd4ea6bbceb69384df5, type: 3}
   Sprite: {fileID: 0}
   Name: Apple
-  Description: 
+  Description: Just apple
   Type: 0
