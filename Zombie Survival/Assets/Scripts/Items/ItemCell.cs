@@ -26,13 +26,6 @@ public class ItemCell : MonoBehaviour
 
     public void OnClickUp()
     {
-        if (itemInCell.State == ItemState.InContainer)
-        {
-             ContainerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);
-        }
-        else
-        {
-             PlayerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);         
-        }
+        PlayerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);
     }
 }

@@ -7,7 +7,6 @@ public class ContainerObject : Interactive
     [SerializeField] private ContainerInfo containerInfo;
 
     public List<ItemInInventory> ItemsInContainer;
-    public bool IsEmpty;
 
     private void Start()
     {

@@ -24,7 +24,6 @@ public class ContainerInventory : MonoBehaviour
             SelectedContainer.ItemsInContainer.Add(item);
 
         item.State = ItemState.InContainer;
-        ContainerInventoryUI.Instance.UpdateInventoryUI();
     }
 
     public void AddItemsInContainer(List<ItemInInventory> items)
@@ -38,7 +37,7 @@ public class ContainerInventory : MonoBehaviour
     public void RemoveItemFromContainer(ItemInInventory item)
     {
         SelectedContainer.ItemsInContainer.Remove(item);
-        ContainerInventoryUI.Instance.UpdateInventoryUI();
+        PlayerInventoryUI.Instance.UpdateInventoryUI();
     }
 
     private ItemInInventory GetItemByInfo(ItemInfo info)
@@ -53,28 +52,18 @@ public class ContainerInventory : MonoBehaviour
     public void OpenContainer(ContainerObject container)
     {
         SelectedContainer = container;
-        ContainerInventoryUI.Instance.UpdateInventoryUI();
-        UIManager.Instance.ToogleUI(UIObjectType.Container);
+        PlayerInventoryUI.Instance.UpdateInventoryUI();
+        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
     }
 
     public void CloseContainer()
     {
-        if (SelectedContainer.ItemsInContainer.Count == 0)
-            SelectedContainer.IsEmpty = true;
-
         SelectedContainer = null;
     }
 
     public void SortInventory()
     {
 
-    }
-
-    public void OnContainerClose()
-    {
-        SelectedContainer.IsEmpty = SelectedContainer.ItemsInContainer.Count == 0;
-
-        SelectedContainer = null;
     }
 
     public int GetItemAmount(ItemInInventory item)

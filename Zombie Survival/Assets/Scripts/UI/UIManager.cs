@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UIObjectType { HUD, Inventory, Container}
+public enum UIObjectType { HUD, Inventory}
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<UIObject> UIObjects;
@@ -39,6 +39,9 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        Cursor.lockState = CursorLockMode.None;
+        if (Input.GetKeyDown(KeyCode.F))
+            PlayerInteractionController.Instance.Interactive.OnInteractive();
         interactiveBtn.SetActive(PlayerInteractionController.Instance.Interactive != null);
     }
 
@@ -50,9 +53,6 @@ public class UIManager : MonoBehaviour
                 GameStateController.Instance.ChangeGameState(GameState.Playing);
                 break;
             case UIObjectType.Inventory:
-                GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
-                break;
-            case UIObjectType.Container:
                 GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
                 break;
         }

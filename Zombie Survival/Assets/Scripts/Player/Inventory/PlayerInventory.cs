@@ -5,7 +5,7 @@ using UnityEngine;
 public enum ItemState { InInventory, InContainer, Dropped}
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private Transform dropPos;
+    //[SerializeField] private Transform dropPos;
 
     public List<ItemInInventory> ItemsInInventory;
 
@@ -27,7 +27,6 @@ public class PlayerInventory : MonoBehaviour
             ItemsInInventory.Add(item);
 
         item.State = ItemState.InInventory;
-        PlayerInventoryUI.Instance.UpdateInventoryUI();
     }
 
     public void AddItemsInInventory(List<ItemInInventory> items)
@@ -53,7 +52,7 @@ public class PlayerInventory : MonoBehaviour
         return null;
     }
 
-    public void DropItem(ItemInInventory item)
+    /*public void DropItem(ItemInInventory item)
     {
         DroppedItem dropped = Instantiate(item.ItemInfo.ItemModel, 
             dropPos.position, Quaternion.identity).AddComponent<DroppedItem>();
@@ -69,7 +68,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         PlayerInventoryUI.Instance.UpdateInventoryUI();
-    }
+    }*/
 
     public void SortInventory()
     {
