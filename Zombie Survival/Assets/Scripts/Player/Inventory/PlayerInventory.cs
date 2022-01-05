@@ -43,7 +43,7 @@ public class PlayerInventory : MonoBehaviour
         PlayerInventoryUI.Instance.UpdateInventoryUI();
     }
 
-    private ItemInInventory GetItemByInfo(ItemInfo info)
+    public ItemInInventory GetItemByInfo(ItemInfo info)
     {
         for (int i = 0; i < ItemsInInventory.Count; i++)
             if (ItemsInInventory[i].ItemInfo == info)

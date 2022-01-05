@@ -6,11 +6,15 @@ using TMPro;
 public class PlayerInventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject aboutItemPanel;
-    [SerializeField] private GameObject transferItem;
     [SerializeField] private Transform itemModelPos;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
     [SerializeField] private ItemCell itemCell;
+
+    [Header("Buttons of panels items")]
+    [SerializeField] private GameObject transferItemBtn;
+    [SerializeField] private GameObject useItemBtn;
+    [SerializeField] private GameObject equipItemBtn;
 
     [Space(7)]
     [SerializeField] private GameObject itemCellPrefab;
@@ -57,6 +61,8 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public void TakeSelectedItem()
     {
+        PlayerHands.Instance.RemoveItemInHandIfTransferHis(itemCell.ItemInCell.ItemInfo);
+
         if (itemCell.ItemInCell.State == ItemState.InContainer)
         {
             PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
@@ -71,12 +77,26 @@ public class PlayerInventoryUI : MonoBehaviour
             Destroy(itemCell.gameObject);
             itemCell = null;
         }
-        transferItem.SetActive(false);
+        transferItemBtn.SetActive(false);
+    }
+
+    public void EquipSelectedItem()
+    {
+        PlayerHands.Instance.TakeInHand(itemCell.ItemInCell.ItemInfo);
+        if (itemCell.ItemInCell.State == ItemState.InContainer)
+        {
+            PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
+            ContainerInventory.Instance.RemoveItemFromContainer(itemCell.ItemInCell);
+            Destroy(itemCell.gameObject);
+            itemCell = null;//Нужно ли?
+        }
     }
 
     public void TurnOnItemPanel(ItemInInventory item, ItemCell itemCell)
     {
-        transferItem.SetActive(ContainerInventory.Instance.SelectedContainer);
+        transferItemBtn.SetActive(ContainerInventory.Instance.SelectedContainer);
+        useItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Food);
+        equipItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Weapon);
 
         if (itemModelPos.childCount != 0)
             Destroy(itemModelPos.GetChild(0).gameObject);

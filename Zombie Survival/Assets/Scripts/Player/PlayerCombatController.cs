@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerCombatController : MonoBehaviour
 {
     [SerializeField] private Camera fpsCam;
+    [SerializeField] private LayerMask enemyLayer;
 
     public ItemWeaponInfo CurrentWeapon;
 
@@ -38,7 +39,7 @@ public class PlayerCombatController : MonoBehaviour
     private void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, CurrentWeapon.Range))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, CurrentWeapon.Range, enemyLayer))
         {
             if (hit.rigidbody != null)
             {

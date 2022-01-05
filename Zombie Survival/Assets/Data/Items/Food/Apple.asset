@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 075e68c6ba1668749a622d3d9c8a8734, type: 3}
   m_Name: Apple
   m_EditorClassIdentifier: 
-  ItemModel: {fileID: 5559497688089568796, guid: 4f6b31ca8c120bd4ea6bbceb69384df5, type: 3}
+  ItemModel: {fileID: 919132149155446097, guid: 0ac85a8a32feb7f43b8246c295d7a2f9, type: 3}
   Sprite: {fileID: 0}
   Name: Apple
   Description: Just apple
-  Type: 0
+  Type: 1

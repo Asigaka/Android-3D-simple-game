@@ -19,3 +19,6 @@ MonoBehaviour:
   - Info: {fileID: 11400000, guid: 3f0e358626541f644aec24954f823e13, type: 2}
     MinCount: 1
     MaxCount: 10
+  - Info: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
+    MinCount: 1
+    MaxCount: 1

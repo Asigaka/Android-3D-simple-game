@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25958dda749b114d9d32f1863f83ffd, type: 3}
+  m_Name: ItemsInHands
+  m_EditorClassIdentifier: 
+  Items:
+  - ItemSide: 1
+    ItemInfo: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
+    SceneItemPosition: {x: 0, y: 0, z: 0}
+    SceneItemRotation: {x: 0, y: 0, z: 0, w: 0}
+    SpawnedItemModel: {fileID: 0}
+  - ItemSide: 1
+    ItemInfo: {fileID: 11400000, guid: 30a46eaae384ace41a4e5032cb6a05c3, type: 2}
+    SceneItemPosition: {x: 0, y: 0, z: 0}
+    SceneItemRotation: {x: 0, y: 0, z: 0, w: 0}
+    SpawnedItemModel: {fileID: 0}
