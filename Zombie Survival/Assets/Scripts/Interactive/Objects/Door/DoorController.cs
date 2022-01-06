@@ -1,109 +1,107 @@
 ﻿using UnityEngine;
 
-namespace BrokenVector.LowPolyFencePack
+/// <summary>
+/// This class manages the door animations.
+/// It needs the legacy animation component.
+/// </summary>
+[RequireComponent(typeof(Animation))]
+public class DoorController : Interactive
 {
-    /// <summary>
-    /// This class manages the door animations.
-    /// It needs the legacy animation component.
-    /// </summary>
-    [RequireComponent(typeof(Animation))]
-    public class DoorController : Interactive
+    public enum DoorState
     {
-        public enum DoorState
+        Open,
+        Closed
+    }
+
+    public DoorState CurrentState
+    {
+        get
         {
-            Open,
-            Closed
+            return currentState;
         }
-
-        public DoorState CurrentState {
-            get
-            {
-                return currentState;
-            }
-            set
-            {
-                currentState = value;
-                Animate();
-            }
-        }
-
-        public bool IsDoorOpen { get { return CurrentState == DoorState.Open; } }
-        public bool IsDoorClosed { get { return CurrentState == DoorState.Closed; } }
-
-        public DoorState InitialState = DoorState.Closed;
-        public float AnimationSpeed = 1;
-
-        [SerializeField] private AnimationClip openAnimation;
-        [SerializeField] private AnimationClip closeAnimation;
-
-        private Animation animator;
-        private DoorState currentState;
-
-        void Awake()
+        set
         {
-            animator = GetComponent<Animation>();
-            if (animator == null)
-            {
-                Debug.LogError("Every DoorController needs an Animator.");
-                return;
-            }
-            
-            animator.playAutomatically = false;
-
-            openAnimation.legacy = true;
-            closeAnimation.legacy = true;
-            animator.AddClip(openAnimation, DoorState.Open.ToString());
-            animator.AddClip(closeAnimation, DoorState.Closed.ToString());
+            currentState = value;
+            Animate();
         }
+    }
 
-        void Start()
-        {            
-            // a little hack, to set the initial state
-            currentState = InitialState;
-            var clip = GetCurrentAnimation();
-            animator[clip].speed = 9999;
-            animator.Play(clip);
-        }
+    public bool IsDoorOpen { get { return CurrentState == DoorState.Open; } }
+    public bool IsDoorClosed { get { return CurrentState == DoorState.Closed; } }
 
-        public void CloseDoor()
+    public DoorState InitialState = DoorState.Closed;
+    public float AnimationSpeed = 1;
+
+    [SerializeField] private AnimationClip openAnimation;
+    [SerializeField] private AnimationClip closeAnimation;
+
+    private Animation animator;
+    private DoorState currentState;
+
+    void Awake()
+    {
+        animator = GetComponent<Animation>();
+        if (animator == null)
         {
-            if (IsDoorClosed)
-                return;
-
-            CurrentState = DoorState.Closed;
+            Debug.LogError("Every DoorController needs an Animator.");
+            return;
         }
 
-        public void OpenDoor()
-        {
-            if (IsDoorOpen)
-                return;
+        animator.playAutomatically = false;
 
-            CurrentState = DoorState.Open;
-        }
+        openAnimation.legacy = true;
+        closeAnimation.legacy = true;
+        animator.AddClip(openAnimation, DoorState.Open.ToString());
+        animator.AddClip(closeAnimation, DoorState.Closed.ToString());
+    }
 
-        public void ToggleDoor()
-        {
-            if (IsDoorOpen)
-                CloseDoor();
-            else
-                OpenDoor();
-        }
+    void Start()
+    {
+        // a little hack, to set the initial state
+        currentState = InitialState;
+        var clip = GetCurrentAnimation();
+        animator[clip].speed = 9999;
+        animator.Play(clip);
+    }
 
-        private void Animate()
-        {
-            var clip = GetCurrentAnimation();
-            animator[clip].speed = AnimationSpeed;
-            animator.Play(clip);
-        }
+    public void CloseDoor()
+    {
+        if (IsDoorClosed)
+            return;
 
-        private string GetCurrentAnimation()
-        {
-            return CurrentState.ToString();
-        }
+        CurrentState = DoorState.Closed;
+    }
 
-        public override void OnInteractive()
-        {
-            ToggleDoor();
-        }
+    public void OpenDoor()
+    {
+        if (IsDoorOpen)
+            return;
+
+        CurrentState = DoorState.Open;
+    }
+
+    public void ToggleDoor()
+    {
+        if (IsDoorOpen)
+            CloseDoor();
+        else
+            OpenDoor();
+    }
+
+    private void Animate()
+    {
+        var clip = GetCurrentAnimation();
+        animator[clip].speed = AnimationSpeed;
+        animator.Play(clip);
+    }
+
+    private string GetCurrentAnimation()
+    {
+        return CurrentState.ToString();
+    }
+
+    public override void OnInteractive()
+    {
+        ToggleDoor();
     }
 }
