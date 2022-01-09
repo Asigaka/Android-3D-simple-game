@@ -127,9 +127,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 469d39b3b48237948a88b348440a64a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  info: {fileID: 0}
-  optionsWithEvent:
+  options:
   - OptionLabel: "\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u0434\u0432\u0435\u0440\u044C"
+    OptionMessage: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u044E \u0434\u0432\u0435\u0440\u044C
+      \u0438\u0437 \u043A\u043E\u043C\u043D\u0430\u0442\u044B"
     OptionEvent:
       m_PersistentCalls:
         m_Calls:
@@ -145,3 +146,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - OptionLabel: "\u0411\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430"
+    OptionMessage: "\u0411\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430-\u0431\u043B\u0430"
+    OptionEvent:
+      m_PersistentCalls:
+        m_Calls: []

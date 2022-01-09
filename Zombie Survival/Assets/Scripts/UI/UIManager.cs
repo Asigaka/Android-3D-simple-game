@@ -28,17 +28,14 @@ public class UIManager : MonoBehaviour
         ToogleUI(startType);
     }
 
-    /*private void Update()
+    private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
             ToogleMainUI();
 
         if (Input.GetKeyDown(KeyCode.I))
             inventoryUI.TurnOnInventory();
-    }*/
 
-    private void Update()
-    {
         Cursor.lockState = CursorLockMode.None;
         if (Input.GetKeyDown(KeyCode.F))
             PlayerInteractionController.Instance.Interactive.OnInteractive();
@@ -52,8 +49,8 @@ public class UIManager : MonoBehaviour
             case UIObjectType.HUD:
                 GameStateController.Instance.ChangeGameState(GameState.Playing);
                 break;
-            case UIObjectType.Inventory:
-                GameStateController.Instance.ChangeGameState(GameState.InteractiveUI);
+            default:
+                GameStateController.Instance.ChangeGameState(GameState.Pause);
                 break;
         }
 

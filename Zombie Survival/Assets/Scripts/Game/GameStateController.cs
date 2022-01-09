@@ -29,9 +29,6 @@ public class GameStateController : MonoBehaviour
                 Time.timeScale = 0;
                 break;
             case GameState.Pause:
-                Time.timeScale = 0;
-                break;
-            case GameState.InteractiveUI:
                 Time.timeScale = 0.2f;
                 break;
         }
