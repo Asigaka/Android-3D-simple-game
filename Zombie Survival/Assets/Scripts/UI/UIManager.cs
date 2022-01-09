@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UIObjectType { HUD, Inventory}
+public enum UIObjectType { HUD, Inventory, Terminal}
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private List<UIObject> UIObjects;
