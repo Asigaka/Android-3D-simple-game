@@ -17,6 +17,11 @@ public class MonologsUI : MonoBehaviour
         Instance = this;
     }
 
+    public void ClearMonologText()
+    {
+        textMonologs.text = "";
+    }
+
     public void ShowMonolog(string monolog)
     {
         textMonologs.text = monolog;

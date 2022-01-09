@@ -6,7 +6,7 @@ public class MonologsController : MonoBehaviour
 {
     [SerializeField] private List<MonologEntity> monologsQueue;
 
-    private float localMonologsTimer = 0;
+    [SerializeField] private float localMonologsTimer = 0;
 
     public static MonologsController Instance;
 
@@ -20,12 +20,9 @@ public class MonologsController : MonoBehaviour
 
     private void Update()
     {
-        if (monologsQueue.Count > 0)
+        if (CanShowMonologByTimer() && monologsQueue.Count > 0)
         {
-            if (CanShowMonologByTimer())
-            {
-                ShowMonologs();
-            }
+            ShowMonologs();
         }
     }
 
@@ -37,10 +34,18 @@ public class MonologsController : MonoBehaviour
 
     private bool CanShowMonologByTimer()
     {
-        if (localMonologsTimer >= 0)
+        if (localMonologsTimer <= 0)
         {
             if (monologsQueue.Count > 0)
+            {
                 localMonologsTimer = monologsQueue[0].MonologTime;
+            }
+            else
+            {
+                MonologsUI.Instance.ClearMonologText();
+                localMonologsTimer = 0;
+            }
+              
             return true;
         }
         else
