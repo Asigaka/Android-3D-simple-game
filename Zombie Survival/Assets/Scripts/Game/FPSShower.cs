@@ -7,11 +7,11 @@ public class FPSShower : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textFPS;
 
-    private float fps;
+    private int fps;
 
     private void Update()
     {
-        fps = 1.0f / Time.deltaTime;
+        fps = (int)(1 / Time.deltaTime);
         textFPS.text = fps.ToString();    
     }
 }

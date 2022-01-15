@@ -12,6 +12,7 @@ public class TerminalInfo : ScriptableObject
     public class OptionWithMessage
     {
         public string OptionLabel;
+        [TextArea(1, 10)]
         public string OptionMessage;
     }
 }

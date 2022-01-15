@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        /*if (Input.GetKeyDown(KeyCode.Escape))
             ToogleMainUI();
 
         if (Input.GetKeyDown(KeyCode.I))
@@ -38,7 +38,7 @@ public class UIManager : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.None;
         if (Input.GetKeyDown(KeyCode.F))
-            PlayerInteractionController.Instance.Interactive.OnInteractive();
+            PlayerInteractionController.Instance.Interactive.OnInteractive();*/
         interactiveBtn.SetActive(PlayerInteractionController.Instance.Interactive != null);
     }
 
