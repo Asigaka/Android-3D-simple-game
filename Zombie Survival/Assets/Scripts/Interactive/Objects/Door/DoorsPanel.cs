@@ -6,7 +6,6 @@ using TMPro;
 public class DoorsPanel : Interactive
 {
     [SerializeField] private DoorController door;
-    [SerializeField] private TextMeshProUGUI t;
 
     private void Start()
     {
@@ -19,8 +18,6 @@ public class DoorsPanel : Interactive
 
     public override void OnInteractive()
     {
-        if (t != null)
-        t.text = gameObject.name;
         door.ToggleDoor();
     }
 }

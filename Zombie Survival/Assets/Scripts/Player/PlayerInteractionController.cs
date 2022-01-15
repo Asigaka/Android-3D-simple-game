@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerInteractionController : MonoBehaviour
 {
     [SerializeField] private Camera fpsCam;
     //[SerializeField] private LayerMask interactiveLayer;
     [SerializeField] private float range = 3;
+    [SerializeField] private TextMeshProUGUI t;
 
     private Interactive interactive;
     private Interactive lastInteractive;
@@ -54,7 +56,11 @@ public class PlayerInteractionController : MonoBehaviour
 
     public void OnInteractive()
     {
-        interactive.OnInteractive();
+        if (interactive != null)
+        {
+            t.text = interactive.ToString();
+            interactive.OnInteractive();
+        }
     }
 
     private void OnDrawGizmos()
