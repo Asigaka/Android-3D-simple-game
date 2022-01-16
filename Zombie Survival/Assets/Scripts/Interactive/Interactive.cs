@@ -15,7 +15,7 @@ public abstract class Interactive : MonoBehaviour
 
     public void OnFocused()
     {
-        outline.OutlineWidth = 8;
+        outline.OutlineWidth = 5;
     }
 
     public void OnDisfocused()

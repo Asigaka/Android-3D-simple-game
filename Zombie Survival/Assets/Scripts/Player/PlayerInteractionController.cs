@@ -8,7 +8,6 @@ public class PlayerInteractionController : MonoBehaviour
     [SerializeField] private Camera fpsCam;
     //[SerializeField] private LayerMask interactiveLayer;
     [SerializeField] private float range = 3;
-    [SerializeField] private TextMeshProUGUI t;
 
     private Interactive interactive;
     private Interactive lastInteractive;
@@ -58,7 +57,6 @@ public class PlayerInteractionController : MonoBehaviour
     {
         if (interactive != null)
         {
-            t.text = interactive.ToString();
             interactive.OnInteractive();
         }
     }
