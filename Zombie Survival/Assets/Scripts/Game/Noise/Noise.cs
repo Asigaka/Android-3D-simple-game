@@ -19,10 +19,18 @@ public class Noise : MonoBehaviour
                 collider.GetComponent<ICreature>().OnHeardNoise(noisePos);
             }
         }
+        Invoke("ClearNoise", 1);
+    }
+
+    private void ClearNoise()
+    {
+        range = 0;
+        noisePos = new Vector3();
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(noisePos, range);
     }
 }

@@ -19,7 +19,7 @@ public class ZombieCombatController : MonoBehaviour
 
     public void Attack(ObjectHealth objectHealth)
     {
-        if (ReadyToAttack())
+        if (ReadyToAttack() && objectHealth)
         {
             objectHealth.DamageObject(objectDamage);
         }

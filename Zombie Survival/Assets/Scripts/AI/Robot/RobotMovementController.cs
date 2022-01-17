@@ -4,20 +4,22 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(FieldOfView))]
-public class ZombieMovementController : MonoBehaviour, ICreature
+public class RobotMovementController : MonoBehaviour, ICreature
 {
     [SerializeField] private NavMeshAgent agent;
-    //[SerializeField] private ZombieCombatController combatController;
+    [SerializeField] private Light facePointLight;
+    [SerializeField] private Light faceSpotLight;
+   // [SerializeField] private 
 
     private Vector3 targetPosition;
-    public Vector3 lastTargetPos;
+    private Vector3 lastTargetPos;
 
     private FieldOfView fov;
 
-    private enum ZombieState { Idle, WalkToTarget, PursueTarget, Attack}
+    public enum RobotState {OnStation, Idle, WalkToTarget, PursueTarget, Attack }
     [SerializeField]
-    private ZombieState currentState = ZombieState.Idle;
-    private ZombieState previousState;
+    private RobotState currentState = RobotState.Idle;
+    private RobotState previousState;
 
     private void Start()
     {
@@ -26,39 +28,48 @@ public class ZombieMovementController : MonoBehaviour, ICreature
 
     private void Update()
     {
-        ZombieStateMachine();
+        RobotStateMachine();
     }
 
-    private void ZombieStateMachine()
+    private void RobotStateMachine()
     {
         fov.CheckHumanAround();
-        
+        facePointLight.gameObject.SetActive(currentState != RobotState.OnStation);
+        faceSpotLight.gameObject.SetActive(currentState != RobotState.OnStation);
+
         switch (currentState)
         {
-            case ZombieState.Idle:
+            case RobotState.OnStation:
+                break;
+            case RobotState.Idle:
+                facePointLight.color = Color.green;
+                faceSpotLight.color = Color.green;
+
                 if (fov.IsSeeHuman)
                 {
-                    SetState(ZombieState.PursueTarget);
+                    SetState(RobotState.PursueTarget);
                 }
                 else if (!fov.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
                 {
-                    SetState(ZombieState.WalkToTarget);
+                    SetState(RobotState.WalkToTarget);
                 }
                 else
                 {
-                    SetState(ZombieState.Idle);
+                    SetState(RobotState.Idle);
                 }
                 break;
-            case ZombieState.WalkToTarget:
+            case RobotState.WalkToTarget:
                 /*if (combatController.CheckObjectForward() != null)
                 {
                     combatController.Attack(combatController.CheckObjectForward());
                 }*/
+                facePointLight.color = Color.yellow;
+                faceSpotLight.color = Color.yellow;
 
                 WalkToLastTarget();
                 if (fov.IsSeeHuman)
                 {
-                    SetState(ZombieState.PursueTarget);
+                    SetState(RobotState.PursueTarget);
                 }
                 else if (!fov.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
                 {
@@ -66,14 +77,16 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 else
                 {
-                    SetState(ZombieState.Idle);
+                    SetState(RobotState.Idle);
                 }
                 break;
-            case ZombieState.PursueTarget:
+            case RobotState.PursueTarget:
                 /*if (combatController.CheckObjectForward() != null)
                 {
                     combatController.Attack(combatController.CheckObjectForward());
                 }*/
+                facePointLight.color = Color.red;
+                faceSpotLight.color = Color.red;
 
                 if (fov.IsSeeHuman)
                 {
@@ -81,30 +94,29 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 else
                 {
-                    SetState(ZombieState.Idle);
+                    SetState(RobotState.Idle);
                 }
                 break;
-            case ZombieState.Attack:
+            case RobotState.Attack:
 
                 break;
         }
     }
 
-    private void SetState(ZombieState to)
+    public void SetState(RobotState to)
     {
         if (previousState != currentState)
             previousState = currentState;
-        
+
         currentState = to;
     }
 
     public void OnHeardNoise(Vector3 noisePos)
     {
-        if (!fov.IsSeeHuman &&
-            noisePos.x != 0 && noisePos.y != 0 && noisePos.z != 0)
+        if (!fov.IsSeeHuman && noisePos.x != 0 && noisePos.y != 0 && noisePos.z != 0 && currentState != RobotState.OnStation)
         {
             lastTargetPos = noisePos;
-            SetState(ZombieState.WalkToTarget);
+            SetState(RobotState.WalkToTarget);
         }
     }
 

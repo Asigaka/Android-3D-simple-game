@@ -54,6 +54,10 @@ namespace StarterAssets
 		[Tooltip("How far in degrees can you move the camera down")]
 		public float BottomClamp = -90.0f;
 
+		[Header("Noise")]
+		[SerializeField] private Noise noise;
+		[SerializeField] private float noiseRange = 3;
+
 		// cinemachine
 		private float _cinemachineTargetPitch;
 
@@ -171,6 +175,7 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
+				noise.GenerateNoise(transform.position, noiseRange);
 			}
 
 			// move the player
