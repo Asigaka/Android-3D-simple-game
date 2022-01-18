@@ -6,7 +6,6 @@ using TMPro;
 public class PlayerInventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject aboutItemPanel;
-    [SerializeField] private Transform itemModelPos;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
     [SerializeField] private ItemCell itemCell;
@@ -77,6 +76,8 @@ public class PlayerInventoryUI : MonoBehaviour
             Destroy(itemCell.gameObject);
             itemCell = null;
         }
+
+        PlayerCombatController.Instance.CheckAmmoInInventory();
         transferItemBtn.SetActive(false);
     }
 
@@ -98,10 +99,6 @@ public class PlayerInventoryUI : MonoBehaviour
         useItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Food);
         equipItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Weapon);
 
-        if (itemModelPos.childCount != 0)
-            Destroy(itemModelPos.GetChild(0).gameObject);
-
-        Instantiate(item.ItemInfo.ItemModel, itemModelPos).layer = 5;
         this.itemCell = itemCell;
         aboutItemPanel.SetActive(true);
         itemNameText.text = item.ItemInfo.Name;

@@ -20,10 +20,10 @@ MonoBehaviour:
   Damage: 5
   Range: 10
   Spread: 0
-  ReloadTime: 0
-  RateOfFire: 0
+  ReloadTime: 3
+  RateOfFire: 0.5
   ImpactForce: 200
   ShootingNoise: 5
-  AmmoInfo: {fileID: 0}
-  MagazineSize: 0
+  AmmoInfo: {fileID: 11400000, guid: 153a8a47ac7a70a45b245b1dcfd3339d, type: 2}
+  MagazineSize: 7
   BulletPerTap: 0

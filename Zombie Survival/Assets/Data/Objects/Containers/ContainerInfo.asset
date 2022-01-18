@@ -22,3 +22,9 @@ MonoBehaviour:
   - Info: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
     MinCount: 1
     MaxCount: 1
+  - Info: {fileID: 11400000, guid: 153a8a47ac7a70a45b245b1dcfd3339d, type: 2}
+    MinCount: 32
+    MaxCount: 32
+  - Info: {fileID: 11400000, guid: 153a8a47ac7a70a45b245b1dcfd3339d, type: 2}
+    MinCount: 32
+    MaxCount: 32

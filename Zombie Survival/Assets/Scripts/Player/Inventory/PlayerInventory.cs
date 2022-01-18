@@ -43,11 +43,28 @@ public class PlayerInventory : MonoBehaviour
         PlayerInventoryUI.Instance.UpdateInventoryUI();
     }
 
+    public void RemoveItemFromInventory(ItemInfo itemInfo, int count)
+    {
+        int currentCount = GetItemByInfo(itemInfo).Count -= count;
+
+        if (currentCount > 0)
+        {
+            GetItemByInfo(itemInfo).Count = currentCount;
+        }
+        else
+        {
+            ItemsInInventory.Remove(GetItemByInfo(itemInfo));
+        }
+        PlayerInventoryUI.Instance.UpdateInventoryUI();
+    }
+
     public ItemInInventory GetItemByInfo(ItemInfo info)
     {
         for (int i = 0; i < ItemsInInventory.Count; i++)
+        {
             if (ItemsInInventory[i].ItemInfo == info)
                 return ItemsInInventory[i];
+        }
 
         return null;
     }
@@ -73,6 +90,14 @@ public class PlayerInventory : MonoBehaviour
     public void SortInventory()
     {
 
+    }
+
+    public int GetItemAmount(ItemInfo itemInfo)
+    {
+        if (GetItemByInfo(itemInfo) == null)
+            return 0;
+
+        return GetItemByInfo(itemInfo).Count;
     }
 
     public int GetItemAmount(ItemInInventory item)

@@ -85,11 +85,10 @@ public class PlayerHands : MonoBehaviour
     private void UpdateItemsInHands()
     {
         UnactiveHandsItems();
-        PlayerCombatController.Instance.CurrentWeapon = null;
         if (GetItemByInfo(itemInHandEntitiesSpawned, rightItem) != null)
         {
             if (GetItemByInfo(itemInHandEntitiesSpawned, rightItem).ItemInfo.Type == ItemType.Weapon)
-                PlayerCombatController.Instance.CurrentWeapon = (ItemWeaponInfo)rightItem;
+                PlayerCombatController.Instance.OnEquipWeapon((ItemWeaponInfo)rightItem);
 
             GetItemByInfo(itemInHandEntitiesSpawned, rightItem).SpawnedItemModel.SetActive(true);
         }
@@ -97,13 +96,16 @@ public class PlayerHands : MonoBehaviour
         if (GetItemByInfo(itemInHandEntitiesSpawned, leftItem) != null)
         {
             if (GetItemByInfo(itemInHandEntitiesSpawned, leftItem).ItemInfo.Type == ItemType.Weapon)
-                PlayerCombatController.Instance.CurrentWeapon = (ItemWeaponInfo)leftItem;
+                PlayerCombatController.Instance.OnEquipWeapon((ItemWeaponInfo)leftItem);
+
             GetItemByInfo(itemInHandEntitiesSpawned, leftItem).SpawnedItemModel.SetActive(true);
         }
     }
 
     private void UnactiveHandsItems()
     {
+        PlayerCombatController.Instance.OnTakeOffWeapon();
+
         for (int i = 0; i < rightItemTransform.childCount; i++)
             rightItemTransform.GetChild(i).gameObject.SetActive(false);
 
