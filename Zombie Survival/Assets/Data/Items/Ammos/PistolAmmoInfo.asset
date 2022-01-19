@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 075e68c6ba1668749a622d3d9c8a8734, type: 3}
-  m_Name: Apple
+  m_Script: {fileID: 11500000, guid: 04b714e169e7e964a83d12d7bf4d25c9, type: 3}
+  m_Name: PistolAmmoInfo
   m_EditorClassIdentifier: 
-  ItemModel: {fileID: 919132149155446097, guid: 0ac85a8a32feb7f43b8246c295d7a2f9, type: 3}
+  ItemModel: {fileID: 8257629992533148154, guid: 431a18655e8d60040977b39d0f0a4f3c, type: 3}
   Sprite: {fileID: 0}
-  Name: Apple
-  Description: Just apple
-  Type: 1
+  Name: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B"
+  Description: 
+  Type: 0

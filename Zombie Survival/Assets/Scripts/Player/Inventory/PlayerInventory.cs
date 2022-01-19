@@ -27,6 +27,7 @@ public class PlayerInventory : MonoBehaviour
             ItemsInInventory.Add(item);
 
         item.State = ItemState.InInventory;
+        PlayerCombatController.Instance.CheckAmmoInInventory();
     }
 
     public void AddItemsInInventory(List<ItemInInventory> items)

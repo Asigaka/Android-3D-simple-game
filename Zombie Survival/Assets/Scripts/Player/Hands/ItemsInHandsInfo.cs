@@ -13,7 +13,7 @@ public class ItemsInHandsInfo : ScriptableObject
         public Side ItemSide;
         public ItemInfo ItemInfo;
         public Vector3 SceneItemPosition;
-        public Quaternion SceneItemRotation;
+        public Vector3 SceneItemRotation;
 
         //[HideInInspector]
         public GameObject SpawnedItemModel;

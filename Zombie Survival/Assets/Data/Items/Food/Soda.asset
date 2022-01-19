@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b714e169e7e964a83d12d7bf4d25c9, type: 3}
-  m_Name: AmmoItem
+  m_Script: {fileID: 11500000, guid: 075e68c6ba1668749a622d3d9c8a8734, type: 3}
+  m_Name: Soda
   m_EditorClassIdentifier: 
-  ItemModel: {fileID: 0}
+  ItemModel: {fileID: 190552955582163143, guid: 6bb593875da753d488bf26e65dbb7a65, type: 3}
   Sprite: {fileID: 0}
-  Name: "\u041F\u0430\u0442\u0440\u043E\u043D\u044B"
-  Description: 
-  Type: 0
+  Name: Soda
+  Description: Just soda
+  Type: 1

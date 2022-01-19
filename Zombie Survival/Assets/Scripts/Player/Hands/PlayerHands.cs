@@ -51,7 +51,7 @@ public class PlayerHands : MonoBehaviour
                 Destroy(itemModel.GetComponent<Rigidbody>());
 
             itemModel.transform.localPosition = item.SceneItemPosition;
-            itemModel.transform.localRotation = item.SceneItemRotation;
+            itemModel.transform.localRotation = Quaternion.Euler(item.SceneItemRotation.x, item.SceneItemRotation.y, item.SceneItemRotation.z);
             itemModel.SetActive(false);
             itemInHandEntitiesSpawned.Add(item);
             itemInHandEntitiesSpawned[i].SpawnedItemModel = itemModel;

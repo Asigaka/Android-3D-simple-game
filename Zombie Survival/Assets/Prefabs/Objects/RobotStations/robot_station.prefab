@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 1396212436234726024}
   - component: {fileID: 1838835229687133002}
   - component: {fileID: 2009007834}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: robot_station_1_part
   m_TagString: Untagged
   m_Icon: {fileID: 0}

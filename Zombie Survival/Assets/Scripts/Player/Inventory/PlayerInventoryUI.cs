@@ -77,7 +77,6 @@ public class PlayerInventoryUI : MonoBehaviour
             itemCell = null;
         }
 
-        PlayerCombatController.Instance.CheckAmmoInInventory();
         transferItemBtn.SetActive(false);
     }
 
@@ -97,7 +96,7 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         transferItemBtn.SetActive(ContainerInventory.Instance.SelectedContainer);
         useItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Food);
-        equipItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Weapon);
+        equipItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.CanEquip);
 
         this.itemCell = itemCell;
         aboutItemPanel.SetActive(true);

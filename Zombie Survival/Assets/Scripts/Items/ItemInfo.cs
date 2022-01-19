@@ -11,4 +11,5 @@ public class ItemInfo : ScriptableObject
     public string Name;
     public string Description;
     public ItemType Type;
+    public bool CanEquip;
 }

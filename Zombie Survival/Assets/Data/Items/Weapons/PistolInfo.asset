@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b1acb09870d9739469e6127c2ac050da, type: 3}
-  m_Name: WeaponItem
+  m_Name: PistolInfo
   m_EditorClassIdentifier: 
-  ItemModel: {fileID: 5559497688089568796, guid: 4f6b31ca8c120bd4ea6bbceb69384df5, type: 3}
+  ItemModel: {fileID: 7660499561774001728, guid: b5344e8747d4c8b4eb89c369f5c0f632, type: 3}
   Sprite: {fileID: 0}
   Name: Pistol
   Description: 
   Type: 2
+  CanEquip: 1
   Damage: 5
   Range: 10
   Spread: 0

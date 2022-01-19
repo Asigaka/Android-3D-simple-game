@@ -21,7 +21,7 @@ public class PlayerCombatUI : MonoBehaviour
 
     private void Start()
     {
-        TurnOffUI();
+        //TurnOffUI();
     }
 
     public void TurnOnUI()
