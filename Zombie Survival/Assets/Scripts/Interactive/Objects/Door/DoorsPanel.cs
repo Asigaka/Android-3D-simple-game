@@ -7,6 +7,8 @@ public class DoorsPanel : Interactive
 {
     [SerializeField] private DoorController door;
 
+    public override string Name => "Дверная панель";
+
     private void Start()
     {
         if (door == null)

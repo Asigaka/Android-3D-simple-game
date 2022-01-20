@@ -8,6 +8,8 @@ public class ContainerObject : Interactive
 
     public List<ItemInInventory> ItemsInContainer;
 
+    public override string Name => containerInfo.Name;
+
     private void Start()
     {
         SpawnItems();
@@ -20,10 +22,7 @@ public class ContainerObject : Interactive
             int itemCount = containerInfo.ItemsInContainer[i].GetCount();
             if (itemCount != 0)
             {
-                ItemInInventory item = new ItemInInventory();
-                item.ItemInfo = containerInfo.ItemsInContainer[i].Info;
-                item.Count = itemCount;
-                item.State = ItemState.InContainer;
+                ItemInInventory item = new ItemInInventory(containerInfo.ItemsInContainer[i].Info, itemCount, ItemState.InContainer);
                 ItemsInContainer.Add(item);
             }
         }

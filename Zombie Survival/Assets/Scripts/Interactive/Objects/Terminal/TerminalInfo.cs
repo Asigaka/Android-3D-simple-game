@@ -6,6 +6,7 @@ using UnityEngine.Events;
 [CreateAssetMenu(menuName = "Objects/TerminalInfo", fileName = "TerminalInfo")]
 public class TerminalInfo : ScriptableObject
 {
+    public string Name;
     public List<OptionWithMessage> OptionsWithMessage;
 
     [System.Serializable]

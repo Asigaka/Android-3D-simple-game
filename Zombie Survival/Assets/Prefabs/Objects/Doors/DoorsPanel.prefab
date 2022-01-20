@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 6207899190566945461}
   - component: {fileID: 6993929980401982279}
   - component: {fileID: 4862765418995571771}
-  - component: {fileID: 4862765418995571772}
   m_Layer: 0
   m_Name: DoorsPanel
   m_TagString: Untagged
@@ -112,24 +111,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
---- !u!114 &4862765418995571772
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 279098077578874669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!1 &3393708705869732331
 GameObject:
   m_ObjectHideFlags: 0

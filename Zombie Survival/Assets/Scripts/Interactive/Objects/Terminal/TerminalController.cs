@@ -13,6 +13,8 @@ public class TerminalController : Interactive
     public TerminalInfo Info { get => info; private set => info = value; }
     public List<OptionWithEvent> OptionsWithEvent { get => optionsWithEvent; private set => optionsWithEvent = value; }
 
+    public override string Name => info.Name;
+
     public override void OnInteractive()
     {
         TerminalUI.Instance.TurnOnTerminalUI(this);

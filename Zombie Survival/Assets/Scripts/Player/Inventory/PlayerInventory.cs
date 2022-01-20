@@ -30,6 +30,16 @@ public class PlayerInventory : MonoBehaviour
         PlayerCombatController.Instance.CheckAmmoInInventory();
     }
 
+    public void AddItemInInventory(ItemInfo item, int count)
+    {
+        if (GetItemByInfo(item) != null)
+            GetItemByInfo(item).Count += count;
+        else
+            ItemsInInventory.Add(new ItemInInventory(item, count, ItemState.InInventory));
+
+        PlayerCombatController.Instance.CheckAmmoInInventory();
+    }
+
     public void AddItemsInInventory(List<ItemInInventory> items)
     {
         foreach (ItemInInventory item in items)

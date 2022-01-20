@@ -29,6 +29,8 @@ public class DoorController : Interactive
     public bool IsDoorOpen { get { return CurrentState == DoorState.Open; } }
     public bool IsDoorClosed { get { return CurrentState == DoorState.Closed; } }
 
+    public override string Name => "Дверь";
+
     public DoorState InitialState = DoorState.Closed;
     public float AnimationSpeed = 1;
 

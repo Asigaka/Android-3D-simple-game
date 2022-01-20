@@ -18,7 +18,7 @@ MonoBehaviour:
     SceneItemPosition: {x: 0.15, y: -0.05, z: 0.2}
     SceneItemRotation: {x: 0, y: -90, z: 0}
     SpawnedItemModel: {fileID: 0}
-  - ItemSide: 1
+  - ItemSide: 0
     ItemInfo: {fileID: 11400000, guid: 22b4b958c3728bc40b7625e2362161db, type: 2}
     SceneItemPosition: {x: 0.15, y: -0.05, z: 0.2}
     SceneItemRotation: {x: 0, y: 0, z: 0}

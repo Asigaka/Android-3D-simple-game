@@ -6,8 +6,10 @@ using TMPro;
 public class PlayerInventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject aboutItemPanel;
+    [SerializeField] private GameObject buttonsItemPanel;
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemDescriptionText;
+    [SerializeField] private TextMeshProUGUI containerNameText;
     [SerializeField] private ItemCell itemCell;
 
     [Header("Buttons of panels items")]
@@ -52,10 +54,16 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
+        if (ContainerInventory.Instance.SelectedContainer != null)
+            containerNameText.text = ContainerInventory.Instance.SelectedContainer.Name;
+        else
+            containerNameText.text = "";
+
         containerContent.gameObject.SetActive(ContainerInventory.Instance.SelectedContainer != null);
         ClearItemsUI();
         SpawnItemsUI();
         aboutItemPanel.SetActive(false);
+        buttonsItemPanel.SetActive(false);
     }
 
     public void TakeSelectedItem()
@@ -100,6 +108,7 @@ public class PlayerInventoryUI : MonoBehaviour
 
         this.itemCell = itemCell;
         aboutItemPanel.SetActive(true);
+        buttonsItemPanel.SetActive(true);
         itemNameText.text = item.ItemInfo.Name;
         itemDescriptionText.text = item.ItemInfo.Description;
     }

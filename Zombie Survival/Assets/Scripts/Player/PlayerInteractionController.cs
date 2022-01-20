@@ -11,6 +11,7 @@ public class PlayerInteractionController : MonoBehaviour
 
     private Interactive interactive;
     private Interactive lastInteractive;
+    private PlayerInteractionUI interactionUI;
 
     public static PlayerInteractionController Instance;
 
@@ -22,6 +23,11 @@ public class PlayerInteractionController : MonoBehaviour
             Destroy(this);
 
         Instance = this;
+    }
+
+    private void Start()
+    {
+        interactionUI = PlayerInteractionUI.Instance;
     }
 
     private void Update()
@@ -42,14 +48,20 @@ public class PlayerInteractionController : MonoBehaviour
         {
             if (interactive != lastInteractive)
             {
-                interactive.OnFocused();
+                //interactive.OnFocused();
                 lastInteractive = interactive;
             }
+
+            interactionUI.TurnOnInteractiveCrosshair(interactive.Name);
         }
         else if (lastInteractive != null)
         {
-            lastInteractive.OnDisfocused();
+            //lastInteractive.OnDisfocused();
             lastInteractive = null;
+        }
+        else
+        {
+            interactionUI.TurnOffInteractiveCrosshair();
         }
     }
 

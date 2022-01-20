@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54b2df8aed23ecc479adcca5627b6c7e, type: 3}
+  m_Name: SodaRecipeInfo
+  m_EditorClassIdentifier: 
+  Ingredients:
+  - Info: {fileID: 11400000, guid: 153a8a47ac7a70a45b245b1dcfd3339d, type: 2}
+    NeededCount: 5
+  - Info: {fileID: 11400000, guid: 22b4b958c3728bc40b7625e2362161db, type: 2}
+    NeededCount: 1
+  FinishedItem: {fileID: 11400000, guid: 30a46eaae384ace41a4e5032cb6a05c3, type: 2}
+  FinishedItemCount: 1

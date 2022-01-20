@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Outline))]
+//[RequireComponent(typeof(Outline))]
 public abstract class Interactive : MonoBehaviour
 {
-    private Outline outline;
+    /*private Outline outline;
 
     private void OnEnable()
     {
@@ -21,7 +21,9 @@ public abstract class Interactive : MonoBehaviour
     public void OnDisfocused()
     {
         outline.OutlineWidth = 0;
-    }
+    }*/
+
+    public abstract string Name { get; }
 
     public abstract void OnInteractive();
 }

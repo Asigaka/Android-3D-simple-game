@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Objects/ContainerInfo", fileName = "ContainerInfo")]
 public class ContainerInfo : ScriptableObject
 {
+    public string Name;
     public List<ItemInContainer> ItemsInContainer;
 
     [System.Serializable]

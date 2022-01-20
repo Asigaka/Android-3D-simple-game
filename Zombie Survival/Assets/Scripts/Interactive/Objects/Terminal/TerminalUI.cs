@@ -5,7 +5,8 @@ using TMPro;
 
 public class TerminalUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textTerminalsMessage;
+    [SerializeField] private TextMeshProUGUI terminalMessageText;
+    [SerializeField] private TextMeshProUGUI terminalNameText;
     [SerializeField] private Transform optionsContent;
     [SerializeField] private GameObject optionsPrefab;
 
@@ -25,6 +26,7 @@ public class TerminalUI : MonoBehaviour
     {
         UIManager.Instance.ToogleUI(UIObjectType.Terminal);
         this.currentTerminal = currentTerminal;
+        terminalNameText.text = currentTerminal.Info.Name;
         UpdateTerminalUI();
     }
 
@@ -36,12 +38,12 @@ public class TerminalUI : MonoBehaviour
 
     public void ShowMessageText(string message)
     {
-        textTerminalsMessage.text = message;
+        terminalMessageText.text = message;
     }
 
     public void UpdateTerminalUI()
     {
-        textTerminalsMessage.text = "";
+        terminalMessageText.text = "";
         ClearOptions();
         SpawnOptions();
     }

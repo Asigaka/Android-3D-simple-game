@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 075e68c6ba1668749a622d3d9c8a8734, type: 3}
-  m_Name: FlashlightInfo
+  m_Script: {fileID: 11500000, guid: e9620e0afbde67d4d98c57f5e4442b9a, type: 3}
+  m_Name: RecipiesInfo
   m_EditorClassIdentifier: 
-  ItemModel: {fileID: 6734034069372219808, guid: c6cc149cf805b5c44bada8b3750445e9, type: 3}
-  Sprite: {fileID: 0}
-  Name: Flshlight
-  Description: 
-  Type: 0
-  CanEquip: 1
+  Recipes:
+  - {fileID: 11400000, guid: f0c79e0d9f85f304ca5984e52e565649, type: 2}
