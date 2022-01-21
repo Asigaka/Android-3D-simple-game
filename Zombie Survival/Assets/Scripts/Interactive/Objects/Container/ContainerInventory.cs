@@ -53,7 +53,7 @@ public class ContainerInventory : MonoBehaviour
     {
         SelectedContainer = container;
         PlayerInventoryUI.Instance.UpdateInventoryUI();
-        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
+        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Inventory);
     }
 
     public void CloseContainer()

@@ -43,12 +43,12 @@ public class PlayerInventoryUI : MonoBehaviour
     public void TurnOnInventory()
     {
         UpdateInventoryUI();
-        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
+        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Inventory);
     }
 
     public void TurnOffIventory()
     {
-        UIManager.Instance.ToogleMainUI();
+        UIInGameManager.Instance.ToogleMainUI();
         ContainerInventory.Instance.CloseContainer();
     }             
 

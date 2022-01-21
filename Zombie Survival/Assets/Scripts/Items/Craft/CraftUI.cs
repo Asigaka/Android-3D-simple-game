@@ -38,13 +38,13 @@ public class CraftUI : MonoBehaviour
 
     public void TurnOnCraftUI()
     {
-        UIManager.Instance.ToogleUI(UIObjectType.Craft);
+        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Craft);
         UpdateUI();
     }
 
     public void TurnOnInventoryUI()
     {
-        UIManager.Instance.ToogleUI(UIObjectType.Inventory);
+        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Inventory);
     }
 
     public void OnCraftBtnClick()

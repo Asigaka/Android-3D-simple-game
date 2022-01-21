@@ -24,7 +24,7 @@ public class TerminalUI : MonoBehaviour
 
     public void TurnOnTerminalUI(TerminalController currentTerminal)
     {
-        UIManager.Instance.ToogleUI(UIObjectType.Terminal);
+        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Terminal);
         this.currentTerminal = currentTerminal;
         terminalNameText.text = currentTerminal.Info.Name;
         UpdateTerminalUI();
@@ -32,7 +32,7 @@ public class TerminalUI : MonoBehaviour
 
     public void TurnOffTerminalUI()
     {
-        UIManager.Instance.ToogleMainUI();
+        UIInGameManager.Instance.ToogleMainUI();
         currentTerminal = null;
     }
 
