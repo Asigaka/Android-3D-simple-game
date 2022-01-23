@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SavesManager : MonoBehaviour
 {
-    public string[] results;
+    public ItemInfo[] results;
     public static SavesManager Instance;
 
     private void Awake()
@@ -16,24 +16,23 @@ public class SavesManager : MonoBehaviour
         Instance = this;
     }
 
-    public bool SavesIsHs()
-    {
-        return SaveSystem.LoadInventory() != null;
-    }
-
     private void Start()
     {
         LoadInventory();
+        results = SaveSystem.GetItemsInfo();
     }
 
-    private void LoadInventory()
+    public void LoadInventory()
     {
-        InventorySaveData inventorySave =  SaveSystem.LoadInventory();
-        PlayerInventory.Instance.ItemsInInventory = inventorySave.GetItems();
+        if (SaveSystem.SavesIsExists(SaveType.Inventory))
+        {
+            InventorySaveData inventorySave = (InventorySaveData)SaveSystem.LoadData(SaveType.Inventory);
+            PlayerInventory.Instance.ItemsInInventory = inventorySave.GetItems();
+        }
     }
 
-    private void OnApplicationQuit()
+    public void LoadLevels()
     {
-        SaveSystem.SaveInventory();
+
     }
 }

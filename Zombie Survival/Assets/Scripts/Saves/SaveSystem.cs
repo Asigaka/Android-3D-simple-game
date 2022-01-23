@@ -2,72 +2,116 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEditor;
 using UnityEngine;
 
+public enum SaveType { Inventory, Levels}
 public static class SaveSystem
 {
-    public static List<ItemInfo> GetItemsInfo()
+    public static string pathOfInventorySave = Application.persistentDataPath + "/inventory.save";
+    public static string pathOfLevelsSave = Application.persistentDataPath + "/levels.save";
+
+    public static ItemInfo[] GetItemsInfo()
     {
-        List<ItemInfo> list = new List<ItemInfo>();
-        string[] results = AssetDatabase.FindAssets("t:iteminfo");
-        for (int i = 0; i < results.Length; i++)
-        {
-            list.Add((ItemInfo)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(results[i]), typeof(ItemInfo)));
-        }
-        return list;
+        ItemInfo[] items;
+        items = Resources.FindObjectsOfTypeAll(typeof(ItemInfo)) as ItemInfo[];
+        return items;
     }
 
-    public static string GetAssetLabelByItemName(string itemName)
+    public static ItemInfo GetItemsInfoByAssetLabel(string itemName)
     {
-        string[] results = AssetDatabase.FindAssets("t:iteminfo");
-        for (int i = 0; i < results.Length; i++)
+        ItemInfo[] items;
+        items = Resources.FindObjectsOfTypeAll(typeof(ItemInfo)) as ItemInfo[];
+        for (int i = 0; i < items.Length; i++)
         {
-            ItemInfo item = (ItemInfo)AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(results[i]), typeof(ItemInfo));
-            if (item.Name == itemName)
+            if (items[i].Name == itemName)
             {
-                return AssetDatabase.GUIDToAssetPath(results[i]);
+                return items[i];
             }
         }
         return null;
     }
 
-    public static ItemInfo GetItemsInfoByAssetLabel(string path)
+    public static void SaveData(SaveType type)
     {
-        return ((ItemInfo)AssetDatabase.LoadAssetAtPath(path, typeof(ItemInfo)));
-    }
-
-    public static void SaveInventory()
-    {
-        string path = Application.persistentDataPath + "/inventory.save";
         BinaryFormatter formatter = new BinaryFormatter();
-        FileStream stream = new FileStream(path, FileMode.Create);
+        string targetPath = "";
+        FileStream stream = null;
+        ISaveData saveData = null;
+        switch (type)
+        {
+            case SaveType.Inventory:
+                targetPath = pathOfInventorySave;
+                saveData = new InventorySaveData(PlayerInventory.Instance.ItemsInInventory);
+                Debug.Log("Инвентарь сохранён");
+                break;
+            case SaveType.Levels:
+                targetPath = pathOfLevelsSave;
+                saveData = new LevelsSaveData(LevelManager.Instance.CurrentLevelIndex);
+                Debug.Log("Уровни сохранены");
+                break;
+        }
 
-        InventorySaveData inventorySave = new InventorySaveData(PlayerInventory.Instance.ItemsInInventory);
-
-        formatter.Serialize(stream, inventorySave);
+        stream = new FileStream(targetPath, FileMode.Create);
+        formatter.Serialize(stream, saveData);
         stream.Close();
     }
 
-    public static InventorySaveData LoadInventory()
+    public static ISaveData LoadData(SaveType type)
     {
-        string path = Application.persistentDataPath + "/inventory.save";
-        if (File.Exists(path))
+        BinaryFormatter formatter = new BinaryFormatter();
+        string targetPath = "";
+        FileStream stream = null;
+        ISaveData saveData = null;
+        switch (type)
         {
-            BinaryFormatter formatter = new BinaryFormatter();
-            FileStream stream = new FileStream(path, FileMode.Open);
+            case SaveType.Inventory:
+                targetPath = pathOfInventorySave;
+                stream = new FileStream(targetPath, FileMode.Open);
+                saveData = formatter.Deserialize(stream) as InventorySaveData;
+                break;
+            case SaveType.Levels:
+                targetPath = pathOfLevelsSave;
+                stream = new FileStream(targetPath, FileMode.Open);
+                saveData = formatter.Deserialize(stream) as LevelsSaveData;
+                break;
+        }
 
-            InventorySaveData inventorySave = formatter.Deserialize(stream) as InventorySaveData;
+        if (SavesIsExists(type))
+        {
             stream.Close();
+            return saveData;
+        }
 
-            return inventorySave;
-            //File.Delete(path);
-            //return null;
-        }
-        else
+        Debug.Log("Не найден сохранённый файл " + targetPath);
+        return null;
+    }
+
+    public static bool SavesIsExists(SaveType type)
+    {
+        string targetPath = "";
+
+        switch (type)
         {
-            Debug.Log("Не найден сохранённый файл " + path);
-            return null;
+            case SaveType.Inventory: targetPath = pathOfInventorySave; break;
+            case SaveType.Levels: targetPath = pathOfLevelsSave; break;
         }
+
+        return File.Exists(targetPath);
+    }
+
+    public static void ClearAllData()
+    {
+        if (SavesIsExists(SaveType.Inventory))
+            File.Delete(pathOfInventorySave);
+        if (SavesIsExists(SaveType.Levels))
+            File.Delete(pathOfLevelsSave);
+    }
+
+    public static void LoadAllData()
+    {
+        if (SavesIsExists(SaveType.Inventory))
+            LoadData(SaveType.Inventory);
+        if (SavesIsExists(SaveType.Levels))
+            LoadData(SaveType.Levels);
     }
 }

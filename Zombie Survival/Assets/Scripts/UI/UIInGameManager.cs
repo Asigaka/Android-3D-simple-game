@@ -59,9 +59,4 @@ public class UIInGameManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
-
-    public void Damage()
-    {
-        PlayerHealth.Instance.DamagePlayer(12);
-    }
 }

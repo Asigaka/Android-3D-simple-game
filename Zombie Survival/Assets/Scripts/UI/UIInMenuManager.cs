@@ -9,6 +9,9 @@ public class UIInMenuManager : MonoBehaviour
     [SerializeField] private List<UIInMenuObject> UIObjects;
     [SerializeField] private UIInMenuObjectType startType;
 
+    [Space(7)]
+    [SerializeField] private GameObject continueBtn;
+
     public static UIInMenuManager Instance;
 
     private void Awake()
@@ -22,7 +25,12 @@ public class UIInMenuManager : MonoBehaviour
     private void Start()
     {
         ToogleUI(startType);
-        OnStartCheckSavedGame();
+    }
+
+    private void OnEnable()
+    {
+        continueBtn.SetActive(SaveSystem.SavesIsExists(SaveType.Levels)
+           || SaveSystem.SavesIsExists(SaveType.Inventory));
     }
 
     public void ToogleUI(UIInMenuObjectType type)
@@ -36,14 +44,16 @@ public class UIInMenuManager : MonoBehaviour
         ToogleUI(startType);
     }
 
-    private void OnStartCheckSavedGame()
+    public void OnContinueBtnClick()
     {
-       
+        SaveSystem.LoadAllData();
+        LevelManager.Instance.TurnOnSavedLevel();
     }
 
     public void OnNewGameBtnClick()
     {
-        SceneManager.LoadScene(1);
+        SaveSystem.ClearAllData();
+        LevelManager.Instance.TurnOnLevel();
     }
 
     public void OnExitBtnClick()

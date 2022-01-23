@@ -37,7 +37,6 @@ public class PlayerInventoryUI : MonoBehaviour
     private void Start()
     {
         playerInventory = PlayerInventory.Instance;
-        UpdateInventoryUI();
     }
 
     public void TurnOnInventory()

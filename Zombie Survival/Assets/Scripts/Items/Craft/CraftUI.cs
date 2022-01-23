@@ -33,7 +33,6 @@ public class CraftUI : MonoBehaviour
     private void Start()
     {
         craftController = CraftController.Instance;
-        UpdateUI();
     }
 
     public void TurnOnCraftUI()

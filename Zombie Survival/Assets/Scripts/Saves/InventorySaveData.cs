@@ -5,15 +5,8 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 [System.Serializable]
-public class InventorySaveData
+public class InventorySaveData : ISaveData
 {
-    /* private PlayerInventory playerInventory;
-
-     public InventorySaveData(PlayerInventory playerInventory)
-     {
-         this.playerInventory = playerInventory;
-     }*/
-
     private List<SerializableItemInInventory> serialItems;
 
     public InventorySaveData(List<ItemInInventory> items)
@@ -27,7 +20,7 @@ public class InventorySaveData
 
         foreach (SerializableItemInInventory serialItem in serialItems)
         {
-            ItemInInventory item = new ItemInInventory(SaveSystem.GetItemsInfoByAssetLabel(serialItem.ItemInfoPath), serialItem.Count, serialItem.State);
+            ItemInInventory item = new ItemInInventory(SaveSystem.GetItemsInfoByAssetLabel(serialItem.ItemName), serialItem.Count, serialItem.State);
             desirializeItems.Add(item);
         }
 
@@ -40,8 +33,8 @@ public class InventorySaveData
 
         foreach (ItemInInventory item in items)
         {
-            SerializableItemInInventory serializableItem 
-                = new SerializableItemInInventory(SaveSystem.GetAssetLabelByItemName(item.ItemInfo.Name), item.Count, item.State);
+            SerializableItemInInventory serializableItem;
+            serializableItem = new SerializableItemInInventory(item.ItemInfo.Name, item.Count, item.State);
             serialItems.Add(serializableItem);
         }
     }
@@ -49,13 +42,13 @@ public class InventorySaveData
     [System.Serializable]
     public class SerializableItemInInventory
     {
-        public string ItemInfoPath;
+        public string ItemName;
         public int Count;
         public ItemState State;
 
-        public SerializableItemInInventory(string itemInfoPath, int count, ItemState state)
+        public SerializableItemInInventory(string itemName, int count, ItemState state)
         {
-            ItemInfoPath = itemInfoPath;
+            ItemName = itemName;
             Count = count;
             this.State = state;
         }
