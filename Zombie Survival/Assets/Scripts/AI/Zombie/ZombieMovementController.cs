@@ -3,26 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(FieldOfView))]
 public class ZombieMovementController : MonoBehaviour, ICreature
 {
     [SerializeField] private NavMeshAgent agent;
-    //[SerializeField] private ZombieCombatController combatController;
+    [SerializeField] private ZombieAnimations anim;
+    [SerializeField] private ZombieCombatController combatController;
+    [SerializeField] private FieldOfView movementView;
 
     private Vector3 targetPosition;
     public Vector3 lastTargetPos;
 
-    private FieldOfView fov;
-
     private enum ZombieState { Idle, WalkToTarget, PursueTarget, Attack}
-    [SerializeField]
-    private ZombieState currentState = ZombieState.Idle;
-    private ZombieState previousState;
 
-    private void Start()
-    {
-        fov = GetComponent<FieldOfView>();
-    }
+    [SerializeField] private ZombieState currentState = ZombieState.Idle;
+    private ZombieState previousState;
 
     private void Update()
     {
@@ -31,16 +25,17 @@ public class ZombieMovementController : MonoBehaviour, ICreature
 
     private void ZombieStateMachine()
     {
-        fov.CheckHumanAround();
+        movementView.CheckHumanAround();
         
         switch (currentState)
         {
             case ZombieState.Idle:
-                if (fov.IsSeeHuman)
+                anim.SetWalk(false);
+                if (movementView.IsSeeHuman)
                 {
                     SetState(ZombieState.PursueTarget);
                 }
-                else if (!fov.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
+                else if (!movementView.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
                 {
                     SetState(ZombieState.WalkToTarget);
                 }
@@ -50,17 +45,18 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 break;
             case ZombieState.WalkToTarget:
-                /*if (combatController.CheckObjectForward() != null)
+                anim.SetWalk(true);
+                if (combatController.CombatView.IsSeeHuman)
                 {
-                    combatController.Attack(combatController.CheckObjectForward());
-                }*/
+                    SetState(ZombieState.Attack);
+                }
 
                 WalkToLastTarget();
-                if (fov.IsSeeHuman)
+                if (movementView.IsSeeHuman)
                 {
                     SetState(ZombieState.PursueTarget);
                 }
-                else if (!fov.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
+                else if (!movementView.IsSeeHuman && agent.remainingDistance > agent.stoppingDistance)
                 {
                     return;
                 }
@@ -70,12 +66,16 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 break;
             case ZombieState.PursueTarget:
-                /*if (combatController.CheckObjectForward() != null)
+                anim.SetWalk(true);
+                if (agent.stoppingDistance >= agent.remainingDistance)
                 {
-                    combatController.Attack(combatController.CheckObjectForward());
-                }*/
+                    SetState(ZombieState.Attack);
+                }
 
-                if (fov.IsSeeHuman)
+                Debug.Log(agent.stoppingDistance);
+                Debug.Log(agent.remainingDistance);
+
+                if (movementView.IsSeeHuman)
                 {
                     OnSeePlayer();
                 }
@@ -85,7 +85,8 @@ public class ZombieMovementController : MonoBehaviour, ICreature
                 }
                 break;
             case ZombieState.Attack:
-
+                anim.SetRandomAttackAnim();
+                combatController.Attack();
                 break;
         }
     }
@@ -100,7 +101,7 @@ public class ZombieMovementController : MonoBehaviour, ICreature
 
     public void OnHeardNoise(Vector3 noisePos)
     {
-        if (!fov.IsSeeHuman &&
+        if (!movementView.IsSeeHuman &&
             noisePos.x != 0 && noisePos.y != 0 && noisePos.z != 0)
         {
             lastTargetPos = noisePos;
@@ -123,7 +124,7 @@ public class ZombieMovementController : MonoBehaviour, ICreature
 
     public void OnSeePlayer()
     {
-        targetPosition = fov.HumanPos;
+        targetPosition = movementView.HumanPos;
         agent.SetDestination(targetPosition);
         if (lastTargetPos != targetPosition)
             lastTargetPos = targetPosition;

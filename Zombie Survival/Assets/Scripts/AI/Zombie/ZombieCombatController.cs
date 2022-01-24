@@ -4,36 +4,31 @@ using UnityEngine;
 
 public class ZombieCombatController : MonoBehaviour
 {
+    [SerializeField] private FieldOfView combatView;
     [SerializeField] private float timeToAttack;
-    [SerializeField] private float objectDamage;
-
-    [Space(7)]
-    [SerializeField] private LayerMask doorLayer;
+    [SerializeField] private float playerDamage;
 
     private float localTimeToAttack;
+
+    public FieldOfView CombatView { get => combatView; }
 
     private void Start()
     {
         localTimeToAttack = timeToAttack;
     }
 
-    public void Attack(ObjectHealth objectHealth)
+    private void Update()
     {
-        if (ReadyToAttack() && objectHealth)
-        {
-            objectHealth.DamageObject(objectDamage);
-        }
+        if (!ReadyToAttack())
+            ReadyToAttack();
     }
 
-    public ObjectHealth CheckObjectForward()
+    public void Attack()
     {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, 1, doorLayer))
+        if (ReadyToAttack())
         {
-            return hit.collider.GetComponent<ObjectHealth>();
+            PlayerHealth.Instance.DamagePlayer(playerDamage);
         }
-
-        return null;
     }
 
     private bool ReadyToAttack()
@@ -48,11 +43,5 @@ public class ZombieCombatController : MonoBehaviour
             localTimeToAttack -= Time.deltaTime;
             return false;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(transform.position, transform.forward * 1);
     }
 }

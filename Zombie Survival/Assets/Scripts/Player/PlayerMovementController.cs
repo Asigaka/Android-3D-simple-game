@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController), typeof(Noise))]
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private CharacterAnimations animations;
+    [SerializeField] private ZombieAnimations animations;
 
     [Space(7)]
     [SerializeField] private float walkSpeed = 6;
