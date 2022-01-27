@@ -5,7 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/WeaponItem", fileName = "WeaponItem")]
 public class ItemWeaponInfo : ItemInfo
 {
-    public int WeaponID;
     public float Damage;
     public float Range;
     //public float Spread;

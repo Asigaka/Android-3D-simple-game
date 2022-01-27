@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6990817452856931578
 Transform:
   m_ObjectHideFlags: 0
@@ -181,11 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fed0fc24e59293942819149b3554198c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WeaponID: 1
   Info: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
   FirePoint: {fileID: 8597440380726538154}
   ShootImpact: {fileID: 7850749535937348312, guid: 1e45def4b4de6df42bc78fae282e8db9, type: 3}
-  RightItem: 1
   AmmoInMagazinAmount: 0
   WeaponReloaded: 0
   WeaponRateOfFired: 1

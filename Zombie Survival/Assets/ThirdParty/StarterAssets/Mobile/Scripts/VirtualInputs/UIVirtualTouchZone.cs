@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
 {
-
     [Header("Rect References")]
     public RectTransform containerRect;
     public RectTransform handleRect;
@@ -121,5 +120,4 @@ public class UIVirtualTouchZone : MonoBehaviour, IPointerDownHandler, IDragHandl
     {
         return -value;
     }
-    
 }

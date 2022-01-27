@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum UIInGameObjectType { HUD, Inventory, Terminal, Craft, Pause}
+public enum UIInGameObjectType { HUD, Inventory, Terminal, Craft, Pause, Settings}
 public class UIInGameManager : MonoBehaviour
 {
     [SerializeField] private List<UIInGameObject> UIObjects;

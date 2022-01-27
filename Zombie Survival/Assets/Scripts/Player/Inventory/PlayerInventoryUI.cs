@@ -87,7 +87,7 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public void EquipSelectedItem()
     {
-        PlayerHands.Instance.EquipWeapon((ItemWeaponInfo)itemCell.ItemInCell.ItemInfo);
+        PlayerHands.Instance.EquipItem(itemCell.ItemInCell.ItemInfo);
         if (itemCell.ItemInCell.State == ItemState.InContainer)
         {
             PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
@@ -101,9 +101,9 @@ public class PlayerInventoryUI : MonoBehaviour
     {
         transferItemBtn.SetActive(ContainerInventory.Instance.SelectedContainer);
         useItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Food);
-        equipItemBtn.SetActive(PlayerHands.Instance.ExistWeapon((ItemWeaponInfo)itemCell.ItemInCell.ItemInfo));
+        equipItemBtn.SetActive(PlayerHands.Instance.ItemModelExist(itemCell.ItemInCell.ItemInfo));
 
-        this.itemCell = itemCell;
+        this.itemCell = itemCell;                                      
         aboutItemPanel.SetActive(true);
         buttonsItemPanel.SetActive(true);
         itemNameText.text = item.ItemInfo.Name;

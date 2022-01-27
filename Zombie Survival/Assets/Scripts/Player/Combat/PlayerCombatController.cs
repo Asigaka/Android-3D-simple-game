@@ -9,7 +9,7 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
 
     [Space(7)]
-    [SerializeField] private WeaponModel curWeapon;
+    [SerializeField] private ItemModel curWeapon;
     [SerializeField] private float localReloadTimer;
     [SerializeField] private int ammoInInventoryAmount;
 
@@ -30,12 +30,15 @@ public class PlayerCombatController : MonoBehaviour
         combatUI = PlayerCombatUI.Instance; 
     }
 
-    public void EquipWeapon(WeaponModel model)
+    public void EquipWeapon(ItemModel model)
     {
-        curWeapon = model;
-        CheckAmmoInInventory();
-        combatUI.TurnOnUI();
-        curWeapon.WeaponRateOfFired = true;
+        if (model.WeaponInfo != null)
+        {
+            curWeapon = model;
+            CheckAmmoInInventory();
+            combatUI.TurnOnUI();
+            curWeapon.WeaponRateOfFired = true;
+        }
     }
 
     public void OnTakeOffWeapon()
@@ -60,7 +63,7 @@ public class PlayerCombatController : MonoBehaviour
     private void PlayerEnemyCheck()
     {
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, curWeapon.Info.Range, enemyLayer))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, curWeapon.WeaponInfo.Range, enemyLayer))
         {
             if (hit.rigidbody != null)
             {
@@ -81,16 +84,16 @@ public class PlayerCombatController : MonoBehaviour
     {
         //Debug.Log("Заполняю магазин");
 
-        if (curWeapon.Info.MagazineSize >= ammoInInventoryAmount)
+        if (curWeapon.WeaponInfo.MagazineSize >= ammoInInventoryAmount)
         {
             curWeapon.AmmoInMagazinAmount = ammoInInventoryAmount;
-            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.Info.AmmoInfo, ammoInInventoryAmount);
+            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.WeaponInfo.AmmoInfo, ammoInInventoryAmount);
         }
         else
         {
-            int ammoInterim = ammoInInventoryAmount - curWeapon.Info.MagazineSize;
-            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.Info.AmmoInfo, ammoInInventoryAmount - ammoInterim);
-            curWeapon.AmmoInMagazinAmount = curWeapon.Info.MagazineSize;
+            int ammoInterim = ammoInInventoryAmount - curWeapon.WeaponInfo.MagazineSize;
+            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.WeaponInfo.AmmoInfo, ammoInInventoryAmount - ammoInterim);
+            curWeapon.AmmoInMagazinAmount = curWeapon.WeaponInfo.MagazineSize;
         }
 
         CheckAmmoInInventory();
@@ -105,7 +108,7 @@ public class PlayerCombatController : MonoBehaviour
             CheckAmmoInInventory();
             if (enemyHealth != null)
             {
-                enemyHealth.DamageEnemy(curWeapon.Info.Damage);
+                enemyHealth.DamageEnemy(curWeapon.WeaponInfo.Damage);
             }
             GameObject impact = Instantiate(curWeapon.ShootImpact, curWeapon.FirePoint);
             Destroy(impact, 0.3f);
@@ -119,7 +122,7 @@ public class PlayerCombatController : MonoBehaviour
     {
         if (curWeapon != null)
         {
-            ammoInInventoryAmount = PlayerInventory.Instance.GetItemAmount(curWeapon.Info.AmmoInfo);
+            ammoInInventoryAmount = PlayerInventory.Instance.GetItemAmount(curWeapon.WeaponInfo.AmmoInfo);
             combatUI.UpdateUI(curWeapon.AmmoInMagazinAmount, ammoInInventoryAmount);
         }
         //Debug.Log("Боеприпасов в инвентаре: " + ammoInInventoryAmount);
@@ -129,7 +132,7 @@ public class PlayerCombatController : MonoBehaviour
     {
         if (curWeapon.LocalRateOfFireTimer <= 0 && !curWeapon.WeaponRateOfFired)
         {
-            curWeapon.LocalRateOfFireTimer = curWeapon.Info.RateOfFire;
+            curWeapon.LocalRateOfFireTimer = curWeapon.WeaponInfo.RateOfFire;
             curWeapon.WeaponRateOfFired = true;
         }
         else
@@ -150,7 +153,7 @@ public class PlayerCombatController : MonoBehaviour
 
             if (curWeapon.AmmoInMagazinAmount > 0)
             {
-                localReloadTimer = curWeapon.Info.ReloadTime;
+                localReloadTimer = curWeapon.WeaponInfo.ReloadTime;
                 curWeapon.WeaponReloaded = true;
             }
         }
@@ -166,7 +169,7 @@ public class PlayerCombatController : MonoBehaviour
         if (curWeapon != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * curWeapon.Info.Range);
+            Gizmos.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * curWeapon.WeaponInfo.Range);
         }
     }
 }

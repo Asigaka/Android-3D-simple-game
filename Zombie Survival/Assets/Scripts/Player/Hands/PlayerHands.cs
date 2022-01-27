@@ -9,7 +9,7 @@ public class PlayerHands : MonoBehaviour
     [SerializeField] private Transform leftItemTransform;
 
     [Header("Weapons")]
-    [SerializeField] private WeaponModel pistolModel;
+    [SerializeField] private List<ItemModel> models;
 
     public static PlayerHands Instance;
 
@@ -21,72 +21,56 @@ public class PlayerHands : MonoBehaviour
         Instance = this;
     }
 
-    public void EquipWeapon(ItemWeaponInfo item)
+    public void EquipItem(ItemInfo item)
     {
-        UnactiveHandsItems();
+        ItemModel model = null;
 
-        switch (item.WeaponID)
+        if (ItemModelExist(item, ref model))
         {
-            case 1:
-                EquipWeapon(pistolModel);
-                break;
+            UnactiveHandsItems();
+            model.gameObject.SetActive(true);
+            model.transform.parent.gameObject.SetActive(true);
+            PlayerCombatController.Instance.EquipWeapon(model);
         }
     }
 
-    private void EquipWeapon(WeaponModel model)
+    public bool ItemModelExist(ItemInfo item)
     {
-        model.gameObject.SetActive(true);
-        PlayerCombatController.Instance.EquipWeapon(model);
-    }
-
-   /* public void SpawnItemsInHands()
-    {
-        int i = 0;
-        foreach (ItemsInHandsInfo.ItemInHandEntity item in itemsInHands.Items)
+        foreach (ItemModel model in models)
         {
-            GameObject itemModel = null;
-
-            switch (item.ItemSide)
+            if (model.Info == item)
             {
-                case Side.Left:
-                    itemModel = Instantiate(item.ItemInfo.ItemModel, leftItemTransform);
-                    break;
-                case Side.Right:
-                    itemModel = Instantiate(item.ItemInfo.ItemModel, rightItemTransform);
-                    break;
+                return true;
             }
-
-            if (itemModel.GetComponent<Collider>())
-                Destroy(itemModel.GetComponent<Collider>());
-            if (itemModel.GetComponent<Rigidbody>())
-                Destroy(itemModel.GetComponent<Rigidbody>());
-
-            itemModel.transform.localPosition = item.SceneItemPosition;
-            itemModel.transform.localRotation = Quaternion.Euler(item.SceneItemRotation.x, item.SceneItemRotation.y, item.SceneItemRotation.z);
-            itemModel.SetActive(false);
-            itemInHandEntitiesSpawned.Add(item);
-            itemInHandEntitiesSpawned[i].SpawnedItemModel = itemModel;
-            i++;
         }
-    }*/
+
+        return false;
+    }
+
+    public bool ItemModelExist(ItemInfo item, ref ItemModel refModel )
+    {
+        foreach (ItemModel model in models)
+        {
+            if (model.Info == item)
+            {
+                refModel = model;
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private void UnactiveHandsItems()
     {
         PlayerCombatController.Instance.OnTakeOffWeapon();
-        
+        rightItemTransform.gameObject.SetActive(false);
+        leftItemTransform.gameObject.SetActive(false);
+
         for (int i = 0; i < rightItemTransform.childCount; i++)
             rightItemTransform.GetChild(i).gameObject.SetActive(false);
 
         for (int i = 0; i < leftItemTransform.childCount; i++)
             leftItemTransform.GetChild(i).gameObject.SetActive(false);
-    }
-
-    public bool ExistWeapon(ItemWeaponInfo item)
-    {
-        switch (item.WeaponID)
-        {
-            case 1: return true;
-            default: return false;
-        }
     }
 }

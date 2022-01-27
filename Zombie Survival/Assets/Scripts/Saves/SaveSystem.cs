@@ -4,7 +4,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public enum SaveType { Inventory, Levels}
+public enum SaveType { Inventory, Levels, Settings}
 public static class SaveSystem
 {
     public static string pathOfInventorySave = Application.persistentDataPath + "/inventory.save";
@@ -48,6 +48,11 @@ public static class SaveSystem
                 targetPath = pathOfLevelsSave;
                 saveData = new LevelsSaveData(LevelManager.Instance.CurrentLevelIndex);
                 Debug.Log("Уровни сохранены");
+                break;
+            case SaveType.Settings:
+                targetPath = pathOfLevelsSave;
+                saveData = new LevelsSaveData(LevelManager.Instance.CurrentLevelIndex);
+                Debug.Log("Настройки сохранены");
                 break;
         }
 

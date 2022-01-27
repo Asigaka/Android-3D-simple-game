@@ -2,13 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponModel : MonoBehaviour
+public class ItemModel : MonoBehaviour
 {
-    public int WeaponID;
-    public ItemWeaponInfo Info;
+    public ItemInfo Info;
+    public ItemWeaponInfo WeaponInfo;
     public Transform FirePoint;
     public GameObject ShootImpact;
-    public bool RightItem;
 
     [Space(7)]
     public int AmmoInMagazinAmount;
