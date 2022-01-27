@@ -8,10 +8,8 @@ public class PlayerHands : MonoBehaviour
     [SerializeField] private Transform rightItemTransform;
     [SerializeField] private Transform leftItemTransform;
 
-    [Space(7)]
-    [SerializeField] private ItemInfo rightItem;
-    [SerializeField] private ItemInfo leftItem;
-    [SerializeField] private List<ItemsInHandsInfo.ItemInHandEntity> itemInHandEntitiesSpawned;
+    [Header("Weapons")]
+    [SerializeField] private WeaponModel pistolModel;
 
     public static PlayerHands Instance;
 
@@ -23,12 +21,25 @@ public class PlayerHands : MonoBehaviour
         Instance = this;
     }
 
-    private void Start()
+    public void EquipWeapon(ItemWeaponInfo item)
     {
-        SpawnItemsInHands();
+        UnactiveHandsItems();
+
+        switch (item.WeaponID)
+        {
+            case 1:
+                EquipWeapon(pistolModel);
+                break;
+        }
     }
 
-    public void SpawnItemsInHands()
+    private void EquipWeapon(WeaponModel model)
+    {
+        model.gameObject.SetActive(true);
+        PlayerCombatController.Instance.EquipWeapon(model);
+    }
+
+   /* public void SpawnItemsInHands()
     {
         int i = 0;
         foreach (ItemsInHandsInfo.ItemInHandEntity item in itemsInHands.Items)
@@ -57,55 +68,12 @@ public class PlayerHands : MonoBehaviour
             itemInHandEntitiesSpawned[i].SpawnedItemModel = itemModel;
             i++;
         }
-    }
-
-    public void TakeInHand(ItemInfo takedItem)
-    {
-        switch (GetItemByInfo(itemsInHands.Items, takedItem).ItemSide)
-        {
-            case Side.Left:
-                foreach (ItemsInHandsInfo.ItemInHandEntity item in itemsInHands.Items)
-                {
-                    if (takedItem == item.ItemInfo)
-                        leftItem = item.ItemInfo;
-                }
-                break;
-            case Side.Right:
-                foreach (ItemsInHandsInfo.ItemInHandEntity item in itemsInHands.Items)
-                {
-                    if (takedItem == item.ItemInfo)
-                        rightItem = item.ItemInfo;
-                }
-                break;
-        }
-
-        UpdateItemsInHands();
-    }
-
-    private void UpdateItemsInHands()
-    {
-        UnactiveHandsItems();
-        if (GetItemByInfo(itemInHandEntitiesSpawned, rightItem) != null)
-        {
-            if (GetItemByInfo(itemInHandEntitiesSpawned, rightItem).ItemInfo.Type == ItemType.Weapon)
-                PlayerCombatController.Instance.OnEquipWeapon((ItemWeaponInfo)rightItem);
-
-            GetItemByInfo(itemInHandEntitiesSpawned, rightItem).SpawnedItemModel.SetActive(true);
-        }
-
-        if (GetItemByInfo(itemInHandEntitiesSpawned, leftItem) != null)
-        {
-            if (GetItemByInfo(itemInHandEntitiesSpawned, leftItem).ItemInfo.Type == ItemType.Weapon)
-                PlayerCombatController.Instance.OnEquipWeapon((ItemWeaponInfo)leftItem);
-
-            GetItemByInfo(itemInHandEntitiesSpawned, leftItem).SpawnedItemModel.SetActive(true);
-        }
-    }
+    }*/
 
     private void UnactiveHandsItems()
     {
         PlayerCombatController.Instance.OnTakeOffWeapon();
-
+        
         for (int i = 0; i < rightItemTransform.childCount; i++)
             rightItemTransform.GetChild(i).gameObject.SetActive(false);
 
@@ -113,23 +81,12 @@ public class PlayerHands : MonoBehaviour
             leftItemTransform.GetChild(i).gameObject.SetActive(false);
     }
 
-    public void RemoveItemInHandIfTransferHis(ItemInfo transferedItem)
+    public bool ExistWeapon(ItemWeaponInfo item)
     {
-        if (transferedItem == rightItem)
-            rightItem = null;
-
-        if (transferedItem == leftItem)
-            leftItem = null;
-
-        UpdateItemsInHands();
-    }
-
-    public ItemsInHandsInfo.ItemInHandEntity GetItemByInfo(List<ItemsInHandsInfo.ItemInHandEntity> list, ItemInfo info)
-    {
-        for (int i = 0; i < list.Count; i++)
-            if (list[i].ItemInfo == info)
-                return list[i];
-
-        return null;
+        switch (item.WeaponID)
+        {
+            case 1: return true;
+            default: return false;
+        }
     }
 }

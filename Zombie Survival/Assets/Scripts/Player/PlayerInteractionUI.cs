@@ -29,4 +29,9 @@ public class PlayerInteractionUI : MonoBehaviour
         interactiveCrosshair.SetActive(false);
         interactiveNameText.text = "";
     }
+
+    public void OnInteractionClick()
+    {
+        PlayerInteractionController.Instance.OnInteractive();
+    }
 }

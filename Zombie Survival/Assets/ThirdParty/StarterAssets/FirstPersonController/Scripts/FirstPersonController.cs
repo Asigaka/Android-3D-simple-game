@@ -175,7 +175,7 @@ namespace StarterAssets
 			{
 				// move
 				inputDirection = transform.right * _input.move.x + transform.forward * _input.move.y;
-				noise.GenerateNoise(transform.position, noiseRange);
+				//noise.GenerateNoise(transform.position, noiseRange);
 			}
 
 			// move the player

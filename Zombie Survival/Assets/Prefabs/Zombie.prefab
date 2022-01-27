@@ -92,8 +92,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 8183222803549813736}
+  anim: {fileID: 0}
   combatController: {fileID: 8183222803549813730}
-  lastTargetPos: {x: 0, y: 0, z: 0}
+  movementView: {fileID: 8183222803549813743}
   currentState: 0
 --- !u!114 &8183222803549813730
 MonoBehaviour:
@@ -107,11 +108,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0c111135d815b8459a04344b886d41e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  combatView: {fileID: 0}
   timeToAttack: 2
-  objectDamage: 5
-  doorLayer:
-    serializedVersion: 2
-    m_Bits: 1024
+  playerDamage: 0
+  attackDistance: 0
 --- !u!54 &8183222803549813741
 Rigidbody:
   m_ObjectHideFlags: 0

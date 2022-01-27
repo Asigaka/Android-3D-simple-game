@@ -9,13 +9,9 @@ public class PlayerCombatController : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
 
     [Space(7)]
-    [SerializeField] private ItemWeaponInfo currentWeapon;
+    [SerializeField] private WeaponModel curWeapon;
     [SerializeField] private float localReloadTimer;
-    [SerializeField] private float localRateOfFireTimer;
-    [SerializeField] private int ammoInMagazinAmount;
     [SerializeField] private int ammoInInventoryAmount;
-    [SerializeField] private bool weaponReloaded;
-    [SerializeField] private bool weaponRateOfFired;
 
     private PlayerCombatUI combatUI;
 
@@ -34,27 +30,27 @@ public class PlayerCombatController : MonoBehaviour
         combatUI = PlayerCombatUI.Instance; 
     }
 
-    public void OnEquipWeapon(ItemWeaponInfo equipedWeapon)
+    public void EquipWeapon(WeaponModel model)
     {
-        currentWeapon = equipedWeapon;
+        curWeapon = model;
         CheckAmmoInInventory();
         combatUI.TurnOnUI();
-        weaponRateOfFired = true;
+        curWeapon.WeaponRateOfFired = true;
     }
 
     public void OnTakeOffWeapon()
     {
-        currentWeapon = null;
+        curWeapon = null;
         combatUI.TurnOffUI();
     }
 
     private void Update()
     {
-        if (currentWeapon != null && (ammoInInventoryAmount > 0 || ammoInMagazinAmount > 0))
+        if (curWeapon != null && (ammoInInventoryAmount > 0 || curWeapon.AmmoInMagazinAmount > 0))
         {
-            if (!weaponReloaded)
+            if (!curWeapon.WeaponReloaded)
                 ReloadTime();
-            if (!weaponRateOfFired)
+            if (!curWeapon.WeaponRateOfFired)
                 RateOfFireTime();
 
             PlayerEnemyCheck();
@@ -64,17 +60,16 @@ public class PlayerCombatController : MonoBehaviour
     private void PlayerEnemyCheck()
     {
         RaycastHit hit;
-        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, currentWeapon.Range, enemyLayer))
+        if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, curWeapon.Info.Range, enemyLayer))
         {
             if (hit.rigidbody != null)
             {
-                hit.rigidbody.AddForce(-hit.normal * currentWeapon.ImpactForce);
+              // hit.rigidbody.AddForce(-hit.normal * currentWeapon.ImpactForce);
             }
 
             combatUI.TurnOnCrosshair();
 
-            if (weaponRateOfFired && weaponReloaded)
-                Shoot();
+            Shoot(hit.collider.GetComponent<EnemyHealth>());
         }
         else
         {
@@ -84,89 +79,94 @@ public class PlayerCombatController : MonoBehaviour
 
     private void FillMagazine()
     {
-        Debug.Log("Заполняю магазин");
+        //Debug.Log("Заполняю магазин");
 
-        if (currentWeapon.MagazineSize >= ammoInInventoryAmount)
+        if (curWeapon.Info.MagazineSize >= ammoInInventoryAmount)
         {
-            ammoInMagazinAmount = ammoInInventoryAmount;
-            PlayerInventory.Instance.RemoveItemFromInventory(currentWeapon.AmmoInfo, ammoInInventoryAmount);
+            curWeapon.AmmoInMagazinAmount = ammoInInventoryAmount;
+            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.Info.AmmoInfo, ammoInInventoryAmount);
         }
         else
         {
-            int ammoInterim = ammoInInventoryAmount - currentWeapon.MagazineSize;
-            PlayerInventory.Instance.RemoveItemFromInventory(currentWeapon.AmmoInfo, ammoInInventoryAmount - ammoInterim);
-            ammoInMagazinAmount = currentWeapon.MagazineSize;
+            int ammoInterim = ammoInInventoryAmount - curWeapon.Info.MagazineSize;
+            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.Info.AmmoInfo, ammoInInventoryAmount - ammoInterim);
+            curWeapon.AmmoInMagazinAmount = curWeapon.Info.MagazineSize;
         }
 
         CheckAmmoInInventory();
     }
 
-    private void Shoot()
+    private void Shoot(EnemyHealth enemyHealth)
     {
-        if (ammoInMagazinAmount > 0 && weaponReloaded)
+        if (curWeapon.AmmoInMagazinAmount > 0 && curWeapon.WeaponReloaded && curWeapon.WeaponRateOfFired)
         {
-            Debug.Log("Выстрел");
-            weaponRateOfFired = false;
-            ammoInMagazinAmount--;
+            curWeapon.WeaponRateOfFired = false;
+            curWeapon.AmmoInMagazinAmount--;
             CheckAmmoInInventory();
+            if (enemyHealth != null)
+            {
+                enemyHealth.DamageEnemy(curWeapon.Info.Damage);
+            }
+            GameObject impact = Instantiate(curWeapon.ShootImpact, curWeapon.FirePoint);
+            Destroy(impact, 0.3f);
         }
 
-        if (ammoInMagazinAmount <= 0)
-            weaponReloaded = false;
+        if (curWeapon.AmmoInMagazinAmount <= 0)
+            curWeapon.WeaponReloaded = false;
     }
 
     public void CheckAmmoInInventory()
     {
-        if (currentWeapon != null)
+        if (curWeapon != null)
         {
-            ammoInInventoryAmount = PlayerInventory.Instance.GetItemAmount(currentWeapon.AmmoInfo);
-            combatUI.UpdateUI(ammoInMagazinAmount, ammoInInventoryAmount);
+            ammoInInventoryAmount = PlayerInventory.Instance.GetItemAmount(curWeapon.Info.AmmoInfo);
+            combatUI.UpdateUI(curWeapon.AmmoInMagazinAmount, ammoInInventoryAmount);
         }
-        Debug.Log("Боеприпасов в инвентаре: " + ammoInInventoryAmount);
+        //Debug.Log("Боеприпасов в инвентаре: " + ammoInInventoryAmount);
     }
 
     private void RateOfFireTime()
     {
-        if (localRateOfFireTimer <= 0 && !weaponRateOfFired)
+        if (curWeapon.LocalRateOfFireTimer <= 0 && !curWeapon.WeaponRateOfFired)
         {
-            localRateOfFireTimer = currentWeapon.RateOfFire;
-            weaponRateOfFired = true;
+            curWeapon.LocalRateOfFireTimer = curWeapon.Info.RateOfFire;
+            curWeapon.WeaponRateOfFired = true;
         }
         else
         {
-            localRateOfFireTimer -= Time.deltaTime;
-            weaponRateOfFired = false;
+            curWeapon.LocalRateOfFireTimer -= Time.deltaTime;
+            curWeapon.WeaponRateOfFired = false;
         }
     }
 
     private void ReloadTime()
     {
-        if (localReloadTimer <= 0 && !weaponReloaded)
+        if (localReloadTimer <= 0 && !curWeapon.WeaponReloaded)
         {
-            if (ammoInMagazinAmount == 0 && ammoInInventoryAmount > 0)
+            if (curWeapon.AmmoInMagazinAmount == 0 && ammoInInventoryAmount > 0)
             {
                 FillMagazine();
             }
 
-            if (ammoInMagazinAmount > 0)
+            if (curWeapon.AmmoInMagazinAmount > 0)
             {
-                localReloadTimer = currentWeapon.ReloadTime;
-                weaponReloaded = true;
+                localReloadTimer = curWeapon.Info.ReloadTime;
+                curWeapon.WeaponReloaded = true;
             }
         }
         else
         {
             localReloadTimer -= Time.deltaTime;
-            weaponReloaded = false;
+            curWeapon.WeaponReloaded = false;
         }
     }
 
     private void OnDrawGizmos()
     {
-        if (currentWeapon != null)
+        if (curWeapon != null)
         {
             Gizmos.color = Color.red;
-            Gizmos.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * currentWeapon.Range);
+            Gizmos.DrawRay(fpsCam.transform.position, fpsCam.transform.forward * curWeapon.Info.Range);
         }
     }
 }
