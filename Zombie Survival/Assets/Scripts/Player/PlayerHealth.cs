@@ -10,8 +10,8 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private float healthPanelShowingTime = 3;
-    [SerializeField] private GameObject healthPanel;
-    [SerializeField] private Slider healthSlider;
+    //[SerializeField] private GameObject healthPanel;
+    //[SerializeField] private Slider healthSlider;
 
     public static PlayerHealth Instance;
 
@@ -26,9 +26,9 @@ public class PlayerHealth : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
-        healthSlider.maxValue = maxHealth;
-        healthSlider.value = currentHealth;
-        healthPanel.SetActive(false);
+        //healthSlider.maxValue = maxHealth;
+        //healthSlider.value = currentHealth;
+        //healthPanel.SetActive(false);
     }
 
     public void DamagePlayer(float damage)
@@ -53,10 +53,10 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator ShowHealthPanel()
     {
-        healthSlider.value = currentHealth;
-        healthPanel.SetActive(true);
+        //healthSlider.value = currentHealth;
+        //healthPanel.SetActive(true);
         yield return new WaitForSeconds(healthPanelShowingTime);
-        healthPanel.SetActive(false);
+        //healthPanel.SetActive(false);
     }
 
     public void OnPlayerDie()

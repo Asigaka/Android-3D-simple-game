@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6800446190004739496}
   - component: {fileID: 6800446190004739159}
   - component: {fileID: 6800446190004739497}
+  - component: {fileID: 1222658871423528568}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -67,6 +68,20 @@ MonoBehaviour:
   AnimationSpeed: 1
   openAnimation: {fileID: 7400000, guid: c996432a3a710084784ee10867c36840, type: 2}
   closeAnimation: {fileID: 7400000, guid: 1f3aa5194e7b01e4eaec220fb4f51340, type: 2}
+  doorCollider: {fileID: 1222658871423528568}
+--- !u!65 &1222658871423528568
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6800446190004739499}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2362895, y: 4.0147057, z: 2.0429}
+  m_Center: {x: -0.010484457, y: 0.0013995171, z: -0.12347031}
 --- !u!1001 &6800446190111818440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -74,13 +89,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6800446190004739496}
     m_Modifications:
+    - target: {fileID: -3933121071842146237, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1037280375436827200, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_Name
       value: doors_part (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1037280375436827200, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786602785152574998, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_RootOrder
@@ -140,13 +159,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6800446190004739496}
     m_Modifications:
+    - target: {fileID: -3933121071842146237, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1037280375436827200, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_Name
       value: doors_part
       objectReference: {fileID: 0}
     - target: {fileID: 1037280375436827200, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 4294967295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4786602785152574998, guid: 02b3ffce2bbb2ce4caf530d1792ffba5, type: 3}
       propertyPath: m_RootOrder
