@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Session : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Player player;
+
+    public static Session Instance;
+
+    public Player Player { get => player; }
+
+    private void Awake()
     {
-        
+        if (Instance)
+            Destroy(Instance);
+
+        Instance = this;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        StartSession();
+    }
+
+    private void StartSession()
+    {
+
     }
 }

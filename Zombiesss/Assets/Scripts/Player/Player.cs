@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PlayerMovement movement;
+    [SerializeField] private PlayerCombat combat;
 
-    // Update is called once per frame
-    void Update()
+    public PlayerMovement Movement { get => movement; }
+    public PlayerCombat Combat { get => combat; }
+
+    private void Start()
     {
-        
+        movement.onShotInput.AddListener(combat.TryShot);
     }
 }

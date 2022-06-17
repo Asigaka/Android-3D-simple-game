@@ -4,15 +4,46 @@ using UnityEngine;
 
 public class PlayerCombat : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private WeaponModel selectedWeapon;
+    [SerializeField] private LayerMask enemyLayer;
+
+    public void TryShot()
     {
-        
+        if (selectedWeapon && selectedWeapon.CanShot)
+        {
+            selectedWeapon.CanShot = false;
+            selectedWeapon.PlayVisual();
+
+            Ray ray = new Ray(selectedWeapon.FirePoint.position, selectedWeapon.FirePoint.forward);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, selectedWeapon.WeaponInfo.Range, enemyLayer))
+            {
+                if (hit.collider)
+                {
+                    Health health = hit.collider.GetComponent<Health>();
+
+                    if (health)
+                    {
+                        health.Damage(selectedWeapon.WeaponInfo.Damage);
+                    }
+                }
+            }
+
+            Invoke(nameof(ResetShot), selectedWeapon.WeaponInfo.TimeBetweenShots);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void ResetShot()
     {
-        
+        selectedWeapon.CanShot = true;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (selectedWeapon)
+        {
+            Gizmos.DrawRay(selectedWeapon.FirePoint.position, selectedWeapon.FirePoint.forward * selectedWeapon.WeaponInfo.Range);
+        }
     }
 }
