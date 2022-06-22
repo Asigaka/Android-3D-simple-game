@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 595663599}
   - component: {fileID: 595663598}
   - component: {fileID: 595663597}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: test weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 770809361}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Weapons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706788312}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fire Point
   m_TagString: Untagged
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
@@ -173,8 +173,7 @@ GameObject:
   - component: {fileID: 3312353854743762417}
   - component: {fileID: 3312353854743762418}
   - component: {fileID: 3312353854743762419}
-  - component: {fileID: 3312353854743762416}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,20 +245,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3312353854743762416
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3312353854743762422}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3312353854772131408
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,12 +255,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3312353854772131411}
   - component: {fileID: 3312353854772131422}
-  - component: {fileID: 3312353854772131423}
   - component: {fileID: 3312353854772131420}
   - component: {fileID: 3312353854772131421}
   - component: {fileID: 3312353854772131410}
-  - component: {fileID: 1354623420}
-  m_Layer: 0
+  - component: {fileID: 1498883958}
+  - component: {fileID: 1498883957}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -312,28 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea197ff3acdab4643bb715b21afb5368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movement: {fileID: 3312353854772131423}
+  movement: {fileID: 1498883957}
   combat: {fileID: 3312353854772131421}
---- !u!114 &3312353854772131423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3312353854772131408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07545cfd629b32489536d991a03c01a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveJoystick: {fileID: 0}
-  lookJoystick: {fileID: 0}
-  rb: {fileID: 1354623420}
-  moveSpeed: 3
-  rotationSpeed: 0
-  onShotInput:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &3312353854772131420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,22 +339,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30387785957cb384784809c227a7ba7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!54 &1354623420
-Rigidbody:
+--- !u!143 &1498883958
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3312353854772131408}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
+--- !u!114 &1498883957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3312353854772131408}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07545cfd629b32489536d991a03c01a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveJoys: {fileID: 0}
+  lookJoys: {fileID: 0}
+  groundCheck: {fileID: 0}
+  groundDistance: 0.4
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 0
+  gravity: -9.81
+  onShotInput:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3312353855896750626
 GameObject:
   m_ObjectHideFlags: 0
@@ -520,7 +510,7 @@ GameObject:
   - component: {fileID: 3312353856120050257}
   - component: {fileID: 3312353856120050262}
   - component: {fileID: 3312353856120050263}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Eyes
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -159,70 +159,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea197ff3acdab4643bb715b21afb5368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1381338379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2300654665968702768, guid: 24931e4bc4afb7a428912831dc848ac1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2300654666737604667}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1381338380 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2300654665968702775, guid: 24931e4bc4afb7a428912831dc848ac1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2300654666737604667}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1381338381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1381338379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b327baf75ba0d694fb2d927196da7c04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  preset: {fileID: 11400000, guid: 342d59e2b6bc09946b12020ff8cca60a, type: 2}
-  waveTimeStep: 3
-  spawnPoints: []
-  minSpawnTime: 0.1
-  maxSpawnTime: 0.2
-  enemiesContent: {fileID: 1807232192}
-  currentWave:
-    waveEnemies: []
-  currentTime: 0
---- !u!1 &1807232191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1807232192}
-  m_Layer: 0
-  m_Name: Enemies Content
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1807232192
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807232191}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1381338380}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2300654666737604667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -230,11 +166,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2300654666473496858, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: waves
-      value: 
-      objectReference: {fileID: 1381338381}
     - target: {fileID: 2300654666473496858, guid: 24931e4bc4afb7a428912831dc848ac1,
         type: 3}
       propertyPath: player
@@ -309,43 +240,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 595663595, guid: 81c5e79ad5251da4895ca797c2197e33, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 770809360, guid: 81c5e79ad5251da4895ca797c2197e33, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 1706788311, guid: 81c5e79ad5251da4895ca797c2197e33, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312353854743762422, guid: 81c5e79ad5251da4895ca797c2197e33,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312353854772131408, guid: 81c5e79ad5251da4895ca797c2197e33,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3312353854772131423, guid: 81c5e79ad5251da4895ca797c2197e33,
-        type: 3}
-      propertyPath: lookJoystick
+    - target: {fileID: 1498883957, guid: 81c5e79ad5251da4895ca797c2197e33, type: 3}
+      propertyPath: lookJoys
       value: 
       objectReference: {fileID: 1019907257}
-    - target: {fileID: 3312353854772131423, guid: 81c5e79ad5251da4895ca797c2197e33,
-        type: 3}
-      propertyPath: moveJoystick
+    - target: {fileID: 1498883957, guid: 81c5e79ad5251da4895ca797c2197e33, type: 3}
+      propertyPath: moveJoys
       value: 
       objectReference: {fileID: 353999544}
-    - target: {fileID: 3312353856120050261, guid: 81c5e79ad5251da4895ca797c2197e33,
-        type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3312353856419389201, guid: 81c5e79ad5251da4895ca797c2197e33,
         type: 3}
       propertyPath: m_RootOrder

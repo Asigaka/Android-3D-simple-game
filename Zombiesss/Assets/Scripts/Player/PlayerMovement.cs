@@ -3,66 +3,103 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[RequireComponent(typeof(CharacterController))]
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private Joystick moveJoystick;
-    [SerializeField] private Joystick lookJoystick;
-    [SerializeField] private Rigidbody rb;
+    [Header("Components")]
+    [SerializeField] private Joystick moveJoys;
+    [SerializeField] private Joystick lookJoys;
 
-    [Space]
-    [SerializeField] private float moveSpeed = 3;
-    [SerializeField] private float rotationSpeed;
-
-    private Vector3 moveVelocity;
-    private Vector3 lookVelocity;
+    [Space(7)]
+    [SerializeField] private Transform groundCheck;
+    [SerializeField] private float groundDistance = 0.4f;
+    [SerializeField] private LayerMask groundMask;
+    [SerializeField] private float gravity = -9.81f;
 
     [HideInInspector] public UnityEvent onShotInput = new UnityEvent();
 
-    private void Update()
+    private CharacterController character;
+    private float turnSmoothVelocity;
+    private Vector3 lookDir;
+    private Vector3 moveDir;
+    private Vector3 velocity;
+
+    private void Start()
     {
-#if UNITY_EDITOR
-        moveVelocity = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-#else
-        moveVelocity = new Vector3(moveJoystick.Horizontal, 0, moveJoystick.Vertical);
-#endif
-        //moveVelocity = new Vector3(moveJoystick.Horizontal, 0, moveJoystick.Vertical);
-        lookVelocity = new Vector3(lookJoystick.Horizontal, 0, lookJoystick.Vertical);
-
-        if (lookVelocity.magnitude > 0.1f)
-        {
-            Look();
-        }
-
-        if (lookVelocity.magnitude > 0.7f)
-        {
-            onShotInput.Invoke();
-        }
+        character = GetComponent<CharacterController>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        if (moveVelocity.magnitude > 0.1f)
-        {
-            Move();
-        }
+        //GroundCheck();
+        //PlayerGravity();
+
+        Move();
     }
 
     private void Move()
     {
-        Vector3 move = transform.right * moveVelocity.x + transform.forward * moveVelocity.z;
+#if UNITY_EDITOR 
+        float moveHor = Input.GetAxisRaw("Horizontal");
+        float moveVer = Input.GetAxisRaw("Vertical");
+#else
+        float moveHor = moveJoys.Horizontal;
+        float moveVer = moveJoys.Vertical;
+#endif
+        float lookHor = lookJoys.Horizontal;
+        float lookVer = lookJoys.Vertical;
 
-        rb.MovePosition(transform.position + (move * moveSpeed * Time.deltaTime));
+        moveDir = new Vector3(moveHor, 0, moveVer).normalized;
+        lookDir = new Vector3(lookHor, 0, lookVer).normalized;
+
+        if (isRunning() || isLooking())
+        {
+            float targetAngle;
+            if (isLooking())
+            {
+                targetAngle = Mathf.Atan2(lookDir.x, lookDir.z) * Mathf.Rad2Deg;
+                onShotInput.Invoke();
+            }
+            else
+            {
+                targetAngle = Mathf.Atan2(moveDir.x, moveDir.z) * Mathf.Rad2Deg;
+            }
+
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, 0.1f);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
+
+            character.Move(moveDir * 6 * Time.deltaTime);
+        }
     }
 
-    private void Look()
+    public void RotateToTarget(Transform target)
     {
-        float heading = Mathf.Atan2(lookVelocity.x, lookVelocity.z);
-        transform.rotation = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
+        transform.LookAt(target);
     }
 
-    private void LookToMove()
+    private bool GroundCheck()
     {
-        float heading = Mathf.Atan2(moveVelocity.x, moveVelocity.z);
-        transform.rotation = Quaternion.Euler(0, heading * Mathf.Rad2Deg, 0);
+        return Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+    }
+
+    private void PlayerGravity()
+    {
+        if (GroundCheck() && velocity.y < 0)
+        {
+            velocity.y = -2;
+        }
+
+        velocity.y += gravity * Time.deltaTime;
+        character.Move(velocity * Time.deltaTime);
+    }
+
+    public bool isRunning()
+    {
+        return moveDir.magnitude >= 0.1f;
+    }
+
+    public bool isLooking()
+    {
+        return lookDir.magnitude >= 0.1f;
     }
 }

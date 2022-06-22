@@ -27,6 +27,6 @@ public class Session : MonoBehaviour
 
     private void StartSession()
     {
-        waves.StartWaves();
+        //waves.StartWaves();
     }
 }
