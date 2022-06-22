@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private EnemyMovement movement;
+    [SerializeField] private EnemyCombat combat;
+
+    [Space]
+    [SerializeField] private bool seePlayerOnStart = true;
+
+    private void Start()
     {
-        
+        if (seePlayerOnStart)
+            SetPlayerTarget();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPlayerTarget()
     {
-        
+        movement.MoveTarget = Session.Instance.Player.transform;
     }
 }

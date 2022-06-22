@@ -20,6 +20,11 @@ public class Health : MonoBehaviour
     }
     public float CurrentHealth { get => currentHealth; private set => currentHealth = value; }
 
+    private void Start()
+    {
+        CurrentHealth = MaxHealth;
+    }
+
     public void Damage(float damage)
     {
         CurrentHealth -= damage;
