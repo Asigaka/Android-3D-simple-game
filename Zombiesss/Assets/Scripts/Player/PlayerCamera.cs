@@ -4,15 +4,12 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Camera actionCamera;
+    [SerializeField] private Vector3 actionOffset;
 
-    // Update is called once per frame
-    void Update()
+    private void LateUpdate()
     {
-        
+        Vector3 targetPos = transform.position + actionOffset;
+        actionCamera.transform.position = targetPos;
     }
 }
