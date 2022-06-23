@@ -28,7 +28,7 @@ public class EnemyCombat : MonoBehaviour
             if (targetHealth)
             {
                 targetHealth.Damage(info.Damage);
-                Debug.Log("Attack " + target.gameObject.name);
+                //Debug.Log("Attack " + target.gameObject.name);
             }
 
             canAttack = false;

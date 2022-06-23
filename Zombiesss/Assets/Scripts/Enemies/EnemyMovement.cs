@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
+    public NavMeshAgent Agent { get => agent; }
+
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -24,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void MoveToTarget(Transform target)
     {
-        agent.SetDestination(target.position);
+        if (agent.enabled)
+            agent.SetDestination(target.position);
     }
 }
