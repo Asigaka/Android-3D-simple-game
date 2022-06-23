@@ -23,6 +23,9 @@ public class PlayerCombat : MonoBehaviour
                 {
                     Health health = hit.collider.GetComponent<Health>();
 
+                    if (!health)
+                        health = hit.collider.GetComponentInParent<Health>();
+
                     if (health)
                     {
                         health.Damage(selectedWeapon.WeaponInfo.Damage);
