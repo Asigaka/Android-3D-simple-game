@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
                 combat.TryAttack(target);
             }
         }
-        else if (target == null && Session.Instance.Player)
+        else if (target == null && seePlayerOnStart && Session.Instance.Player)
         {
             target = Session.Instance.Player.transform;
         }
@@ -52,7 +52,6 @@ public class Enemy : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == gameObject.layer) return;
-        Debug.Log(other.gameObject.name);
 
         Health health = other.GetComponent<Health>();
 
