@@ -98,7 +98,8 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 4de17b2f775eba7499193ae9e61ca57a,
+    type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -123,31 +124,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &137572065 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7003472972803506531, guid: 24931e4bc4afb7a428912831dc848ac1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2300654666737604667}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &137572067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 137572065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c826c6abd3eb5a84289f50aa9e0a9344, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  anim: {fileID: 575848253}
---- !u!95 &575848253 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 73093713, guid: 24931e4bc4afb7a428912831dc848ac1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2300654666737604667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2300654666737604667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,11 +131,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2300654665919934851, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: animations
-      value: 
-      objectReference: {fileID: 137572067}
     - target: {fileID: 2300654666915035949, guid: 24931e4bc4afb7a428912831dc848ac1,
         type: 3}
       propertyPath: m_RootOrder
@@ -220,55 +191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: '[Game]'
       objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
+    - target: {fileID: 3610278807792459059, guid: 24931e4bc4afb7a428912831dc848ac1,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 12
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.8870109
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.46174863
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2300654667011001841, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 55
-      objectReference: {fileID: 0}
-    - target: {fileID: 3610278809119223324, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: actionOffset.y
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3610278809119223324, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: actionOffset.z
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3610278809229664427, guid: 24931e4bc4afb7a428912831dc848ac1,
-        type: 3}
-      propertyPath: animations
-      value: 
-      objectReference: {fileID: 137572067}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24931e4bc4afb7a428912831dc848ac1, type: 3}
