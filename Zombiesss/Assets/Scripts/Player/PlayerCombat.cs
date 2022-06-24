@@ -6,11 +6,19 @@ public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private WeaponModel selectedWeapon;
     [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private HumanAnimations animations;
+
+    private void Start()
+    {
+        animations.SetFiring(false);
+    }
 
     public void TryShot()
     {
         if (selectedWeapon && selectedWeapon.CanShot)
         {
+            animations.SetFiring(true);
+
             selectedWeapon.CanShot = false;
             selectedWeapon.PlayVisual();
 
@@ -40,6 +48,7 @@ public class PlayerCombat : MonoBehaviour
     private void ResetShot()
     {
         selectedWeapon.CanShot = true;
+        animations.SetFiring(false);
     }
 
     private void OnDrawGizmos()

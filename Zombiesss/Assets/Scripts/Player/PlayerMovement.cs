@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Components")]
     [SerializeField] private Joystick moveJoys;
     [SerializeField] private Joystick lookJoys;
+    [SerializeField] private HumanAnimations animations;
 
     [Space(7)]
     [SerializeField] private Transform groundCheck;
@@ -51,6 +52,8 @@ public class PlayerMovement : MonoBehaviour
 
         moveDir = new Vector3(moveHor, 0, moveVer).normalized;
         lookDir = new Vector3(lookHor, 0, lookVer).normalized;
+
+        animations.SetSpeed(moveDir.magnitude);
 
         if (isRunning() || isLooking())
         {

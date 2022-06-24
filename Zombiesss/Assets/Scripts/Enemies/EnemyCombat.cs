@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyCombat : MonoBehaviour
 {
+    [SerializeField] private ZombieAnimations animations;
+
     private EnemyInfo info;
     private bool canAttack = true;
 
@@ -24,6 +26,7 @@ public class EnemyCombat : MonoBehaviour
         if (canAttack)
         {
             Health targetHealth = target.GetComponent<Health>();
+            animations.SetAttack();
 
             if (targetHealth)
             {

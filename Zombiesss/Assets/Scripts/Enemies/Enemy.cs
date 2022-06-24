@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyMovement movement;
     [SerializeField] private EnemyCombat combat;
     [SerializeField] private Health health;
+    [SerializeField] private ZombieAnimations animations;
 
     [Space]
     [SerializeField] private bool seePlayerOnStart = true;
@@ -42,6 +43,7 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         CheckTargetForward();
+        animations.SetSpeed(movement.Agent.velocity.magnitude);
 
         if (target)
         {

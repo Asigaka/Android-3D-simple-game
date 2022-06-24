@@ -87,6 +87,7 @@ MonoBehaviour:
   movement: {fileID: 3449113594942274346}
   combat: {fileID: 691798267694626770}
   health: {fileID: 1618885271881176464}
+  animations: {fileID: 5752810543976743053}
   seePlayerOnStart: 0
   checkPoint: {fileID: 1698089780547915098}
   checkLayer:
@@ -107,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9eb21af06ae252469dcc503e4948d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animations: {fileID: 5752810543976743053}
 --- !u!114 &3449113594942274346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +275,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character_Chibi
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: e4c1afdf00b9707408cc2c3d74b6f3cd, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e4c1afdf00b9707408cc2c3d74b6f3cd, type: 3}
 --- !u!1 &3577752725095283220 stripped
 GameObject:
@@ -290,7 +293,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3577752725095283220}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: e4c1afdf00b9707408cc2c3d74b6f3cd, type: 3}
   m_Controller: {fileID: 9100000, guid: fc4c24440629b354589b7c219c90641d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -307,3 +310,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 5765484215518660395}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &6684032928798849658 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e4c1afdf00b9707408cc2c3d74b6f3cd,
+    type: 3}
+  m_PrefabInstance: {fileID: 5765484215518660395}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5752810543976743053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684032928798849658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a89c288cba2244448af431ede516b703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 6136132308595904606}
