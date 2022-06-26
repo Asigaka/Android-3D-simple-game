@@ -36,7 +36,6 @@ public class DoorController : Interactive
 
     [SerializeField] private AnimationClip openAnimation;
     [SerializeField] private AnimationClip closeAnimation;
-    [SerializeField] private Collider doorCollider;
 
     private Animation animator;
     private DoorState currentState;
@@ -73,8 +72,6 @@ public class DoorController : Interactive
         if (IsDoorClosed)
             return;
 
-            doorCollider.enabled = true;
-
         CurrentState = DoorState.Closed;
     }
 
@@ -82,8 +79,6 @@ public class DoorController : Interactive
     {
         if (IsDoorOpen)
             return;
-
-            doorCollider.enabled = false;
 
         CurrentState = DoorState.Open;
     }
