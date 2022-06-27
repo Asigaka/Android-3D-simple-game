@@ -32,6 +32,6 @@ public class PlayerInteractionUI : MonoBehaviour
 
     public void OnInteractionClick()
     {
-        PlayerInteractionController.Instance.OnInteractive();
+        PlayerInteraction.Instance.OnInteractive();
     }
 }

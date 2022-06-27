@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PlayerCombatController : MonoBehaviour
+public class PlayerCombat : MonoBehaviour
 {
     [SerializeField] private Camera fpsCam;
     [SerializeField] private LayerMask enemyLayer;
@@ -15,7 +15,7 @@ public class PlayerCombatController : MonoBehaviour
 
     private PlayerCombatUI combatUI;
 
-    public static PlayerCombatController Instance;
+    public static PlayerCombat Instance;
 
     private void Awake()
     {
@@ -72,7 +72,7 @@ public class PlayerCombatController : MonoBehaviour
 
             combatUI.TurnOnCrosshair();
 
-            Shoot(hit.collider.GetComponent<EnemyHealth>());
+            Shoot(hit.collider.GetComponent<Health>());
         }
         else
         {
@@ -99,7 +99,7 @@ public class PlayerCombatController : MonoBehaviour
         CheckAmmoInInventory();
     }
 
-    private void Shoot(EnemyHealth enemyHealth)
+    private void Shoot(Health enemyHealth)
     {
         if (curWeapon.AmmoInMagazinAmount > 0 && curWeapon.WeaponReloaded && curWeapon.WeaponRateOfFired)
         {
@@ -108,8 +108,9 @@ public class PlayerCombatController : MonoBehaviour
             CheckAmmoInInventory();
             if (enemyHealth != null)
             {
-                enemyHealth.DamageEnemy(curWeapon.WeaponInfo.Damage);
+                enemyHealth.Damage(curWeapon.WeaponInfo.Damage);
             }
+
             GameObject impact = Instantiate(curWeapon.ShootImpact, curWeapon.FirePoint);
             Destroy(impact, 0.3f);
         }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class PlayerInteractionController : MonoBehaviour
+public class PlayerInteraction : MonoBehaviour
 {
     [SerializeField] private Camera fpsCam;
     //[SerializeField] private LayerMask interactiveLayer;
@@ -13,7 +13,7 @@ public class PlayerInteractionController : MonoBehaviour
     private Interactive lastInteractive;
     private PlayerInteractionUI interactionUI;
 
-    public static PlayerInteractionController Instance;
+    public static PlayerInteraction Instance;
 
     public Interactive Interactive { get => interactive; private set => interactive = value; }
 

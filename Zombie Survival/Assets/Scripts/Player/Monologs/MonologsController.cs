@@ -8,16 +8,6 @@ public class MonologsController : MonoBehaviour
 
     [SerializeField] private float localMonologsTimer = 0;
 
-    public static MonologsController Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
-
     private void Update()
     {
         if (CanShowMonologByTimer() && monologsQueue.Count > 0)

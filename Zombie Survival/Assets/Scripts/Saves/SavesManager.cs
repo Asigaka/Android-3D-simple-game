@@ -6,15 +6,6 @@ using UnityEngine;
 public class SavesManager : MonoBehaviour
 {
     public ItemInfo[] results;
-    public static SavesManager Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
 
     private void Start()
     {

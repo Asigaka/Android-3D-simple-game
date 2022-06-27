@@ -22,7 +22,7 @@ public class FieldOfViewEditor : Editor
         if (fov.IsSeeHuman)
         {
             Handles.color = Color.green;
-            Handles.DrawLine(fov.transform.position, fov.HumanPos);
+            Handles.DrawLine(fov.transform.position, fov.Targethealth.transform.position);
         }
     }
 

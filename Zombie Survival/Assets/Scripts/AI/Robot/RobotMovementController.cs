@@ -135,7 +135,7 @@ public class RobotMovementController : MonoBehaviour, ICreature
 
     public void OnSeePlayer()
     {
-        targetPosition = fov.HumanPos;
+        targetPosition = fov.Targethealth.transform.position;
         agent.SetDestination(targetPosition);
         if (lastTargetPos != targetPosition)
             lastTargetPos = targetPosition;

@@ -27,7 +27,7 @@ public class PlayerInventory : MonoBehaviour
             ItemsInInventory.Add(item);
 
         item.State = ItemState.InInventory;
-        PlayerCombatController.Instance.CheckAmmoInInventory();
+        PlayerCombat.Instance.CheckAmmoInInventory();
         SaveSystem.SaveData(SaveType.Inventory);
     }
 
@@ -38,7 +38,7 @@ public class PlayerInventory : MonoBehaviour
         else
             ItemsInInventory.Add(new ItemInInventory(item, count, ItemState.InInventory));
 
-        PlayerCombatController.Instance.CheckAmmoInInventory();
+        PlayerCombat.Instance.CheckAmmoInInventory();
     }
 
     public void AddItemsInInventory(List<ItemInInventory> items)

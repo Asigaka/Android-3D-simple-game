@@ -47,13 +47,13 @@ public class UIInMenuManager : MonoBehaviour
     public void OnContinueBtnClick()
     {
         SaveSystem.LoadAllData();
-        LevelManager.Instance.TurnOnSavedLevel();
+        Session.Instance.Level.TurnOnSavedLevel();
     }
 
     public void OnNewGameBtnClick()
     {
         SaveSystem.ClearAllData();
-        LevelManager.Instance.TurnOnLevel();
+        Session.Instance.Level.TurnOnLevel();
     }
 
     public void OnExitBtnClick()

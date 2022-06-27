@@ -46,12 +46,12 @@ public static class SaveSystem
                 break;
             case SaveType.Levels:
                 targetPath = pathOfLevelsSave;
-                saveData = new LevelsSaveData(LevelManager.Instance.CurrentLevelIndex);
+                saveData = new LevelsSaveData(Session.Instance.Level.CurrentLevelIndex);
                 Debug.Log("Уровни сохранены");
                 break;
             case SaveType.Settings:
                 targetPath = pathOfLevelsSave;
-                saveData = new LevelsSaveData(LevelManager.Instance.CurrentLevelIndex);
+                saveData = new LevelsSaveData(Session.Instance.Level.CurrentLevelIndex);
                 Debug.Log("Настройки сохранены");
                 break;
         }

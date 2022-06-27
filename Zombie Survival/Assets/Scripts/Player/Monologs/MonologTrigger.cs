@@ -10,7 +10,7 @@ public class MonologTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            MonologsController.Instance.AddMonolog(info);
+            Session.Instance.Monologs.AddMonolog(info);
             Destroy(gameObject);
         }    
     }

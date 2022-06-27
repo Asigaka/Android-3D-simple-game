@@ -32,7 +32,7 @@ public class CraftUI : MonoBehaviour
 
     private void Start()
     {
-        craftController = CraftController.Instance;
+        craftController = Session.Instance.Crafts;
     }
 
     public void TurnOnCraftUI()
@@ -48,7 +48,7 @@ public class CraftUI : MonoBehaviour
 
     public void OnCraftBtnClick()
     {
-        CraftController.Instance.CraftItem(currentRecipeInfo);
+        Session.Instance.Crafts.CraftItem(currentRecipeInfo);
         UpdateUI();
     }
 
@@ -106,7 +106,7 @@ public class CraftUI : MonoBehaviour
     private void SpawnIngredients(RecipeInfo recipe)
     {
         craftBtn.gameObject.SetActive(true);
-        craftBtn.interactable = CraftController.Instance.CanCraft(recipe);
+        craftBtn.interactable = Session.Instance.Crafts.CanCraft(recipe);
 
         foreach (RecipeInfo.IngredientRecipe ingredient in recipe.Ingredients)
         {

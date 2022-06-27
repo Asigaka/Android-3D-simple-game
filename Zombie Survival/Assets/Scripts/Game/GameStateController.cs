@@ -8,16 +8,6 @@ public class GameStateController : MonoBehaviour
 {
     [SerializeField] private GameState startState;
 
-    public static GameStateController Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
-
     public void ChangeGameState(GameState state)
     {
         switch (state)

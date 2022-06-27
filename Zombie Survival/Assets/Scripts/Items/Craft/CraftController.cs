@@ -8,17 +8,7 @@ public class CraftController : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
-    public static CraftController Instance;
-
     public RecipiesInfo Recipes { get => recipes; private set => recipes = value; }
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
 
     private void Start()
     {

@@ -25,14 +25,12 @@ public class PlayerNeedsController : MonoBehaviour
 
     private void SetStartNeedsAmount()
     {
-        needs.Health.CurrentAmount = needs.Health.MaxAmount;
         needs.Satiety.CurrentAmount = needs.Satiety.MaxAmount;
         needs.Thirst.CurrentAmount = needs.Thirst.MaxAmount;
     }
 
     public void ChangeNeedsPerMinute()
     {
-        ChangeNeedPerMinute(needs.Health);
         ChangeNeedPerMinute(needs.Satiety);
         ChangeNeedPerMinute(needs.Thirst);
         PlayerNeedsUI.Instance.ShowAllNeeds(needs.Health.CurrentAmount,

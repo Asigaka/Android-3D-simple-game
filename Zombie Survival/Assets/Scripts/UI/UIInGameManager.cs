@@ -31,7 +31,7 @@ public class UIInGameManager : MonoBehaviour
 
     private void Update()
     {
-        interactiveBtn.SetActive(PlayerInteractionController.Instance.Interactive != null);
+        interactiveBtn.SetActive(PlayerInteraction.Instance.Interactive != null);
     }
 
     public void ToogleUI(UIInGameObjectType type)
@@ -39,10 +39,10 @@ public class UIInGameManager : MonoBehaviour
         switch (type)
         {
             case UIInGameObjectType.HUD:
-                GameStateController.Instance.ChangeGameState(GameState.Playing);
+                Session.Instance.GameState.ChangeGameState(GameState.Playing);
                 break;
             default:
-                GameStateController.Instance.ChangeGameState(GameState.Pause);
+                Session.Instance.GameState.ChangeGameState(GameState.Pause);
                 break;
         }
 
