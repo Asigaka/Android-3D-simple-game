@@ -55,7 +55,7 @@ namespace StarterAssets
 		public float BottomClamp = -90.0f;
 
 		[Header("Noise")]
-		[SerializeField] private Noise noise;
+		//[SerializeField] private N noise;
 		[SerializeField] private float noiseRange = 3;
 
 		// cinemachine
