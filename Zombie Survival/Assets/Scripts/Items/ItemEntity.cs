@@ -3,16 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class ItemInInventory 
+public class ItemEntity 
 {
     public ItemInfo ItemInfo;
     public int Count;
-    public ItemState State;
 
-    public ItemInInventory(ItemInfo itemInfo, int count, ItemState state)
+    public ItemEntity(ItemInfo itemInfo, int count)
     {
         ItemInfo = itemInfo;
         Count = count;
-        State = state;
     }
 }

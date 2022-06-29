@@ -12,33 +12,19 @@ public class CraftController : MonoBehaviour
 
     private void Start()
     {
-        playerInventory = PlayerInventory.Instance;
+        playerInventory = Session.Instance.Player.Inventory;
     }
 
     public void CraftItem(RecipeInfo recipe)
     {
-        if (CanCraft(recipe))
+        if (ItemsHander.HasItemsInPlayer(recipe.Ingredients))
         {
-            foreach (RecipeInfo.IngredientRecipe ingredient in recipe.Ingredients)
+            foreach (ItemWithAmount ingredient in recipe.Ingredients)
             {
-                playerInventory.RemoveItemFromInventory(ingredient.Info, ingredient.NeededCount);
+                ItemsHander.RemoveItemInPlayer(ingredient.Info, ingredient.Count);
             }
 
-            playerInventory.AddItemInInventory(recipe.FinishedItem, recipe.FinishedItemCount);
+            ItemsHander.AddItemInPlayer(recipe.FinishedItem, recipe.FinishedItemCount);
         }
-    }
-
-    public bool CanCraft(RecipeInfo recipe)
-    {
-        foreach (RecipeInfo.IngredientRecipe ingredient in recipe.Ingredients)
-        {
-            int aviableCount = playerInventory.GetItemAmount(ingredient.Info);
-            int neededCount = ingredient.NeededCount;
-
-            if (aviableCount < neededCount)
-                return false;
-        }
-
-        return true;
     }
 }

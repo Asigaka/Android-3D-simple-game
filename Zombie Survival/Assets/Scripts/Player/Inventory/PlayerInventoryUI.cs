@@ -24,90 +24,22 @@ public class PlayerInventoryUI : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
-    public static PlayerInventoryUI Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
-
     private void Start()
     {
-        playerInventory = PlayerInventory.Instance;
-    }
-
-    public void TurnOnInventory()
-    {
-        UpdateInventoryUI();
-        UIInGameManager.Instance.ToogleUI(UIInGameObjectType.Inventory);
-    }
-
-    public void TurnOffIventory()
-    {
-        UIInGameManager.Instance.ToogleMainUI();
-        ContainerInventory.Instance.CloseContainer();
-    }             
+        playerInventory = Session.Instance.Player.Inventory;
+    }           
 
     public void UpdateInventoryUI()
     {
-        if (Session.Instance.Container.SelectedContainer != null)
-            containerNameText.text = Session.Instance.Container.SelectedContainer.Name;
-        else
-            containerNameText.text = "";
-
-        containerContent.gameObject.SetActive(Session.Instance.Container.SelectedContainer != null);
         ClearItemsUI();
         SpawnItemsUI();
         aboutItemPanel.SetActive(false);
         buttonsItemPanel.SetActive(false);
     }
 
-    public void TakeSelectedItem()
+    public void SelectItem(ItemEntity item)
     {
-        if (itemCell.ItemInCell.State == ItemState.InContainer)
-        {
-            PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
-            Session.Instance.Container.RemoveItemFromContainer(itemCell.ItemInCell);
-            Destroy(itemCell.gameObject);
-            itemCell = null;//Нужно ли?
-        }
-        else if (itemCell.ItemInCell.State == ItemState.InInventory)
-        {
-            Session.Instance.Container.AddItemInContainer(itemCell.ItemInCell);
-            PlayerInventory.Instance.RemoveItemFromInventory(itemCell.ItemInCell);
-            Destroy(itemCell.gameObject);
-            itemCell = null;
-        }
 
-        transferItemBtn.SetActive(false);
-    }
-
-    public void EquipSelectedItem()
-    {
-        PlayerHands.Instance.EquipItem(itemCell.ItemInCell.ItemInfo);
-        if (itemCell.ItemInCell.State == ItemState.InContainer)
-        {
-            Session.Instance.Player.Inventory.AddItemInInventory(itemCell.ItemInCell);
-            Session.Instance.Container.RemoveItemFromContainer(itemCell.ItemInCell);
-            Destroy(itemCell.gameObject);
-            itemCell = null;//Нужно ли?
-        }
-    }
-
-    public void TurnOnItemPanel(ItemInInventory item, ItemCell itemCell)
-    {
-        transferItemBtn.SetActive(ContainerInventory.Instance.SelectedContainer);
-        useItemBtn.SetActive(itemCell.ItemInCell.ItemInfo.Type == ItemType.Food);
-        equipItemBtn.SetActive(PlayerHands.Instance.ItemModelExist(itemCell.ItemInCell.ItemInfo));
-
-        this.itemCell = itemCell;                                      
-        aboutItemPanel.SetActive(true);
-        buttonsItemPanel.SetActive(true);
-        itemNameText.text = item.ItemInfo.Name;
-        itemDescriptionText.text = item.ItemInfo.Description;
     }
 
     private void SpawnItemsUI()
@@ -119,13 +51,15 @@ public class PlayerInventoryUI : MonoBehaviour
             cell.SetValues(playerInventory.ItemsInInventory[i]);
         }
 
-        if (Session.Instance.Container.SelectedContainer != null)
+        ContainerObject container = playerInventory.SelectedContainer;
+
+        if (container)
         {
-            for (int i = 0; i < Session.Instance.Container.SelectedContainer.ItemsInContainer.Count; i++)
+            for (int i = 0; i < container.ItemsInContainer.Count; i++)
             {
                 GameObject cellObj = Instantiate(itemCellPrefab, containerContent);
                 ItemCell cell = cellObj.GetComponent<ItemCell>();
-                cell.SetValues(Session.Instance.Container.SelectedContainer.ItemsInContainer[i]);
+                cell.SetValues(container.ItemsInContainer[i]);
             }
         }
     }

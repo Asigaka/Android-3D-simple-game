@@ -41,7 +41,7 @@ public static class SaveSystem
         {
             case SaveType.Inventory:
                 targetPath = pathOfInventorySave;
-                saveData = new InventorySaveData(PlayerInventory.Instance.ItemsInInventory);
+                //saveData = new InventorySaveData(PlayerInventory.Instance.ItemsInInventory);
                 Debug.Log("Инвентарь сохранён");
                 break;
             case SaveType.Levels:

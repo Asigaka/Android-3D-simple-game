@@ -9,7 +9,7 @@ public class PlayerHands : MonoBehaviour
     [SerializeField] private Transform leftItemTransform;
 
     [Header("Weapons")]
-    [SerializeField] private List<ItemModel> models;
+    [SerializeField] private List<WeaponModel> models;
 
     public static PlayerHands Instance;
 
@@ -23,7 +23,7 @@ public class PlayerHands : MonoBehaviour
 
     public void EquipItem(ItemInfo item)
     {
-        ItemModel model = null;
+        WeaponModel model = null;
 
         if (ItemModelExist(item, ref model))
         {
@@ -36,7 +36,7 @@ public class PlayerHands : MonoBehaviour
 
     public bool ItemModelExist(ItemInfo item)
     {
-        foreach (ItemModel model in models)
+        foreach (WeaponModel model in models)
         {
             if (model.Info == item)
             {
@@ -47,9 +47,9 @@ public class PlayerHands : MonoBehaviour
         return false;
     }
 
-    public bool ItemModelExist(ItemInfo item, ref ItemModel refModel )
+    public bool ItemModelExist(ItemInfo item, ref WeaponModel refModel )
     {
-        foreach (ItemModel model in models)
+        foreach (WeaponModel model in models)
         {
             if (model.Info == item)
             {

@@ -22,6 +22,6 @@ public class RecipeCell : MonoBehaviour
 
     public void OnClickShow()
     {
-        CraftUI.Instance.OnRecipeCellClick(recipe);
+        Session.Instance.Crafts.CraftItem(recipe);
     }
 }

@@ -5,14 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Recipe", fileName = "RecipeInfo")]
 public class RecipeInfo : ScriptableObject
 {
-    public List<IngredientRecipe> Ingredients;
+    public List<ItemWithAmount> Ingredients;
     public ItemInfo FinishedItem;
     public int FinishedItemCount = 1;
-
-    [System.Serializable] 
-    public class IngredientRecipe
-    {
-        public ItemInfo Info;
-        public int NeededCount;
-    }
 }

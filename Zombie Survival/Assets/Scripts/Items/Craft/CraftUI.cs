@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class CraftUI : MonoBehaviour
 {
-    [SerializeField] private GameObject recipePrefab;
+    /*[SerializeField] private GameObject recipePrefab;
     [SerializeField] private GameObject ingredientPrefab;
     [SerializeField] private Transform ingredietPanel;
     [SerializeField] private Transform recipiesPanel;
@@ -118,5 +118,5 @@ public class CraftUI : MonoBehaviour
             cell.SetValues(ingredient.Info.Sprite, ingredient.Info.Name,
                 aviableCount, neededCount);
         }
-    }
+    }*/
 }

@@ -9,7 +9,6 @@ public class Session : MonoBehaviour
     [SerializeField] private CraftController crafts;
     [SerializeField] private MonologsController monologs;
     [SerializeField] private GameStateController gameState;
-    [SerializeField] private ContainerInventory container;
     [SerializeField] private Player player;
 
     public static Session Instance;
@@ -20,7 +19,6 @@ public class Session : MonoBehaviour
     public MonologsController Monologs { get => monologs; }
     public GameStateController GameState { get => gameState; }
     public Player Player { get => player; }
-    public ContainerInventory Container { get => container; }
 
     private void Awake()
     {

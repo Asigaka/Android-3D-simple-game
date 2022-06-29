@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private LayerMask enemyLayer;
 
     [Space(7)]
-    [SerializeField] private ItemModel curWeapon;
+    [SerializeField] private WeaponModel curWeapon;
     [SerializeField] private float localReloadTimer;
     [SerializeField] private int ammoInInventoryAmount;
 
@@ -30,7 +30,7 @@ public class PlayerCombat : MonoBehaviour
         combatUI = PlayerCombatUI.Instance; 
     }
 
-    public void EquipWeapon(ItemModel model)
+    public void EquipWeapon(WeaponModel model)
     {
         if (model.WeaponInfo != null)
         {
@@ -82,19 +82,9 @@ public class PlayerCombat : MonoBehaviour
 
     private void FillMagazine()
     {
-        //Debug.Log("Заполняю магазин");
+        Debug.Log("Заполняю магазин");
 
-        if (curWeapon.WeaponInfo.MagazineSize >= ammoInInventoryAmount)
-        {
-            curWeapon.AmmoInMagazinAmount = ammoInInventoryAmount;
-            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.WeaponInfo.AmmoInfo, ammoInInventoryAmount);
-        }
-        else
-        {
-            int ammoInterim = ammoInInventoryAmount - curWeapon.WeaponInfo.MagazineSize;
-            PlayerInventory.Instance.RemoveItemFromInventory(curWeapon.WeaponInfo.AmmoInfo, ammoInInventoryAmount - ammoInterim);
-            curWeapon.AmmoInMagazinAmount = curWeapon.WeaponInfo.MagazineSize;
-        }
+        curWeapon.AmmoInMagazinAmount = ItemsHander.RemoveItemInPlayer(curWeapon.Info, curWeapon.AmmoInMagazinAmount);
 
         CheckAmmoInInventory();
     }
@@ -123,10 +113,9 @@ public class PlayerCombat : MonoBehaviour
     {
         if (curWeapon != null)
         {
-            ammoInInventoryAmount = PlayerInventory.Instance.GetItemAmount(curWeapon.WeaponInfo.AmmoInfo);
+            ammoInInventoryAmount = ItemsHander.GetItemAmountInPlayer(curWeapon.Info);
             combatUI.UpdateUI(curWeapon.AmmoInMagazinAmount, ammoInInventoryAmount);
         }
-        //Debug.Log("Боеприпасов в инвентаре: " + ammoInInventoryAmount);
     }
 
     private void RateOfFireTime()

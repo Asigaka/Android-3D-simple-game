@@ -10,8 +10,6 @@ public class UIInGameManager : MonoBehaviour
     [SerializeField] private UIInGameObjectType startType;
     [SerializeField] private GameObject interactiveBtn;
 
-    private PlayerInventoryUI inventoryUI;
-
     public static UIInGameManager Instance;
 
     private void Awake()
@@ -24,8 +22,6 @@ public class UIInGameManager : MonoBehaviour
 
     private void Start()
     {
-        inventoryUI = PlayerInventoryUI.Instance;
-
         ToogleUI(startType);
     }
 

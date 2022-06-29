@@ -6,9 +6,10 @@ public class ContainerObject : Interactive
 {
     [SerializeField] private ContainerInfo containerInfo;
 
-    public List<ItemInInventory> ItemsInContainer;
+    [SerializeField] private List<ItemEntity> itemsInContainer;
 
     public override string Name => containerInfo.Name;
+    public List<ItemEntity> ItemsInContainer { get => itemsInContainer; }
 
     private void Start()
     {
@@ -22,15 +23,14 @@ public class ContainerObject : Interactive
             int itemCount = containerInfo.ItemsInContainer[i].GetCount();
             if (itemCount != 0)
             {
-                ItemInInventory item = new ItemInInventory(containerInfo.ItemsInContainer[i].Info, itemCount, ItemState.InContainer);
-                ItemsInContainer.Add(item);
+                ItemsHander.AddItem(itemsInContainer, containerInfo.ItemsInContainer[i].Info, itemCount);
             }
         }
     }
 
     public void Open()
     {
-        ContainerInventory.Instance.OpenContainer(this);
+
     }
 
     public override void OnInteractive()

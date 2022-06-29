@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemModel : MonoBehaviour
+public class WeaponModel : MonoBehaviour
 {
     public ItemInfo Info;
     public ItemWeaponInfo WeaponInfo;

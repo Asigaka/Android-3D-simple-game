@@ -10,11 +10,11 @@ public class ItemCell : MonoBehaviour
     [SerializeField] private Image itemImg;
     [SerializeField] private TextMeshProUGUI itemCountText;
 
-    private ItemInInventory itemInCell;
+    private ItemEntity itemInCell;
 
-    public ItemInInventory ItemInCell { get => itemInCell; set => itemInCell = value; }
+    public ItemEntity ItemInCell { get => itemInCell; }
 
-    public void SetValues(ItemInInventory item)
+    public void SetValues(ItemEntity item)
     {
         itemInCell = item;
 
@@ -26,6 +26,6 @@ public class ItemCell : MonoBehaviour
 
     public void OnClickUp()
     {
-        PlayerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);
+        //PlayerInventoryUI.Instance.TurnOnItemPanel(itemInCell, this);
     }
 }

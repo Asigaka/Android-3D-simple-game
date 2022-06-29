@@ -7,7 +7,7 @@ public abstract class Interactive : MonoBehaviour
 {
     [SerializeField] private bool isLocked;
 
-    [SerializeField] private List<ItemInInventory> itemsForInteract;
+    [SerializeField] private List<ItemEntity> itemsForInteract;
 
     private QuikOutline outline;
     private Color outlineColor = Color.white;

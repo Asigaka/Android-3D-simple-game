@@ -9,33 +9,33 @@ public class InventorySaveData : ISaveData
 {
     private List<SerializableItemInInventory> serialItems;
 
-    public InventorySaveData(List<ItemInInventory> items)
+    public InventorySaveData(List<ItemEntity> items)
     {
         SerializeItems(items);
     }
 
-    public List<ItemInInventory> GetItems()
+    public List<ItemEntity> GetItems()
     {
-        List<ItemInInventory> desirializeItems = new List<ItemInInventory>();
+        List<ItemEntity> desirializeItems = new List<ItemEntity>();
 
         foreach (SerializableItemInInventory serialItem in serialItems)
         {
-            ItemInInventory item = new ItemInInventory(SaveSystem.GetItemsInfoByAssetLabel(serialItem.ItemName), serialItem.Count, serialItem.State);
-            desirializeItems.Add(item);
+            //ItemEntity item = new ItemEntity(SaveSystem.GetItemsInfoByAssetLabel(serialItem.ItemName), serialItem.Count, serialItem.State);
+            //desirializeItems.Add(item);
         }
 
         return desirializeItems;
     }
 
-    private void SerializeItems(List<ItemInInventory> items)
+    private void SerializeItems(List<ItemEntity> items)
     {
         serialItems = new List<SerializableItemInInventory>();
 
-        foreach (ItemInInventory item in items)
+        foreach (ItemEntity item in items)
         {
-            SerializableItemInInventory serializableItem;
-            serializableItem = new SerializableItemInInventory(item.ItemInfo.Name, item.Count, item.State);
-            serialItems.Add(serializableItem);
+            //SerializableItemInInventory serializableItem;
+            //serializableItem = new SerializableItemInInventory(item.ItemInfo.Name, item.Count, item.State);
+            //serialItems.Add(serializableItem);
         }
     }
 

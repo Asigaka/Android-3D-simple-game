@@ -17,8 +17,8 @@ public class SavesManager : MonoBehaviour
     {
         if (SaveSystem.SavesIsExists(SaveType.Inventory))
         {
-            InventorySaveData inventorySave = (InventorySaveData)SaveSystem.LoadData(SaveType.Inventory);
-            PlayerInventory.Instance.ItemsInInventory = inventorySave.GetItems();
+            //InventorySaveData inventorySave = (InventorySaveData)SaveSystem.LoadData(SaveType.Inventory);
+            //PlayerInventory.Instance.ItemsInInventory = inventorySave.GetItems();
         }
     }
 
