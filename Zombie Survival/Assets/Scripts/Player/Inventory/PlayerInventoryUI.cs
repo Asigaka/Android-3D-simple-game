@@ -53,12 +53,12 @@ public class PlayerInventoryUI : MonoBehaviour
 
     public void UpdateInventoryUI()
     {
-        if (ContainerInventory.Instance.SelectedContainer != null)
-            containerNameText.text = ContainerInventory.Instance.SelectedContainer.Name;
+        if (Session.Instance.Container.SelectedContainer != null)
+            containerNameText.text = Session.Instance.Container.SelectedContainer.Name;
         else
             containerNameText.text = "";
 
-        containerContent.gameObject.SetActive(ContainerInventory.Instance.SelectedContainer != null);
+        containerContent.gameObject.SetActive(Session.Instance.Container.SelectedContainer != null);
         ClearItemsUI();
         SpawnItemsUI();
         aboutItemPanel.SetActive(false);
@@ -70,13 +70,13 @@ public class PlayerInventoryUI : MonoBehaviour
         if (itemCell.ItemInCell.State == ItemState.InContainer)
         {
             PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
-            ContainerInventory.Instance.RemoveItemFromContainer(itemCell.ItemInCell);
+            Session.Instance.Container.RemoveItemFromContainer(itemCell.ItemInCell);
             Destroy(itemCell.gameObject);
             itemCell = null;//Нужно ли?
         }
         else if (itemCell.ItemInCell.State == ItemState.InInventory)
         {
-            ContainerInventory.Instance.AddItemInContainer(itemCell.ItemInCell);
+            Session.Instance.Container.AddItemInContainer(itemCell.ItemInCell);
             PlayerInventory.Instance.RemoveItemFromInventory(itemCell.ItemInCell);
             Destroy(itemCell.gameObject);
             itemCell = null;
@@ -90,8 +90,8 @@ public class PlayerInventoryUI : MonoBehaviour
         PlayerHands.Instance.EquipItem(itemCell.ItemInCell.ItemInfo);
         if (itemCell.ItemInCell.State == ItemState.InContainer)
         {
-            PlayerInventory.Instance.AddItemInInventory(itemCell.ItemInCell);
-            ContainerInventory.Instance.RemoveItemFromContainer(itemCell.ItemInCell);
+            Session.Instance.Player.Inventory.AddItemInInventory(itemCell.ItemInCell);
+            Session.Instance.Container.RemoveItemFromContainer(itemCell.ItemInCell);
             Destroy(itemCell.gameObject);
             itemCell = null;//Нужно ли?
         }
@@ -119,13 +119,13 @@ public class PlayerInventoryUI : MonoBehaviour
             cell.SetValues(playerInventory.ItemsInInventory[i]);
         }
 
-        if (ContainerInventory.Instance.SelectedContainer != null)
+        if (Session.Instance.Container.SelectedContainer != null)
         {
-            for (int i = 0; i < ContainerInventory.Instance.SelectedContainer.ItemsInContainer.Count; i++)
+            for (int i = 0; i < Session.Instance.Container.SelectedContainer.ItemsInContainer.Count; i++)
             {
                 GameObject cellObj = Instantiate(itemCellPrefab, containerContent);
                 ItemCell cell = cellObj.GetComponent<ItemCell>();
-                cell.SetValues(ContainerInventory.Instance.SelectedContainer.ItemsInContainer[i]);
+                cell.SetValues(Session.Instance.Container.SelectedContainer.ItemsInContainer[i]);
             }
         }
     }

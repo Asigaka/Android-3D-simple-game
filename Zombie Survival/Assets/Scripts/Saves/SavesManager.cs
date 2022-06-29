@@ -9,7 +9,7 @@ public class SavesManager : MonoBehaviour
 
     private void Start()
     {
-        LoadInventory();
+        //LoadInventory();
         results = SaveSystem.GetItemsInfo();
     }
 

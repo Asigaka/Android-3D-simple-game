@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
 
         item.State = ItemState.InInventory;
         PlayerCombat.Instance.CheckAmmoInInventory();
-        SaveSystem.SaveData(SaveType.Inventory);
+        //SaveSystem.SaveData(SaveType.Inventory);
     }
 
     public void AddItemInInventory(ItemInfo item, int count)

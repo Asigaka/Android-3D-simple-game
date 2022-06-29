@@ -46,9 +46,15 @@ public class PlayerInteraction : MonoBehaviour
 
         if (interactive != null)
         {
+            if (interactive.IsLocked)
+            {
+                interactive = null;
+                return;
+            }
+
             if (interactive != lastInteractive)
             {
-                //interactive.OnFocused();
+                interactive.OnFocused();
                 lastInteractive = interactive;
             }
 
@@ -56,7 +62,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else if (lastInteractive != null)
         {
-            //lastInteractive.OnDisfocused();
+            lastInteractive.OnDisfocused();
             lastInteractive = null;
         }
         else

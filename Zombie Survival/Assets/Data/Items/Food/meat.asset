@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ItemModel: {fileID: 0}
   Sprite: {fileID: 0}
-  Name: 
+  Name: "\u041C\u044F\u0441\u043E"
   Description: 
   ModelID: 0
   Type: 1

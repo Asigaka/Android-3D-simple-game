@@ -2,28 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[RequireComponent(typeof(Outline))]
+[RequireComponent(typeof(QuikOutline))]
 public abstract class Interactive : MonoBehaviour
 {
-    /*private Outline outline;
+    [SerializeField] private bool isLocked;
+
+    [SerializeField] private List<ItemInInventory> itemsForInteract;
+
+    private QuikOutline outline;
+    private Color outlineColor = Color.white;
 
     private void OnEnable()
     {
-        outline = GetComponent<Outline>();
-        outline.OutlineWidth = 0;
+        outline = GetComponent<QuikOutline>();
+        outline.OutlineColor = outlineColor;
+        outline.enabled = false;
     }
 
     public void OnFocused()
     {
-        outline.OutlineWidth = 5;
+        outline.enabled = true;
     }
 
     public void OnDisfocused()
     {
-        outline.OutlineWidth = 0;
-    }*/
+        outline.enabled = false;
+    }
 
     public abstract string Name { get; }
+    public bool IsLocked { get => isLocked; private set => isLocked = value; }
 
     public abstract void OnInteractive();
+
+    public void Lock() => IsLocked = true;
+    public void Unlock() => IsLocked = false;
 }
