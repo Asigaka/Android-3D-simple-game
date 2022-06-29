@@ -30,7 +30,7 @@ public class PlayerHands : MonoBehaviour
             UnactiveHandsItems();
             model.gameObject.SetActive(true);
             model.transform.parent.gameObject.SetActive(true);
-            PlayerCombat.Instance.EquipWeapon(model);
+            //Sess.Instance.EquipWeapon(model);
         }
     }
 
@@ -63,7 +63,7 @@ public class PlayerHands : MonoBehaviour
 
     private void UnactiveHandsItems()
     {
-        PlayerCombat.Instance.OnTakeOffWeapon();
+        //PlayerCombat.Instance.OnTakeOffWeapon();
         rightItemTransform.gameObject.SetActive(false);
         leftItemTransform.gameObject.SetActive(false);
 

@@ -3181,10 +3181,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7176119823391711093, guid: 71ec1d9fbeed7064b8f0cb65d0a0b988, type: 3}
-      propertyPath: isLocked
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71ec1d9fbeed7064b8f0cb65d0a0b988, type: 3}
 --- !u!4 &523445795 stripped
@@ -5868,7 +5864,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -12406,6 +12402,7 @@ GameObject:
   - component: {fileID: 3396662408245757203}
   - component: {fileID: 1277118326210478058}
   - component: {fileID: 8430364215904334179}
+  - component: {fileID: 8430364215904334180}
   m_Layer: 0
   m_Name: gate.001
   m_TagString: Untagged
@@ -12673,6 +12670,7 @@ GameObject:
   - component: {fileID: 3842294665809272656}
   - component: {fileID: 6335638979373380114}
   - component: {fileID: 6226411471537747807}
+  - component: {fileID: 6335638979373380115}
   m_Layer: 0
   m_Name: gate
   m_TagString: Untagged
@@ -13167,6 +13165,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2738263766769647394}
   m_Mesh: {fileID: -1556410543170635569, guid: c98256981d7f3f747b7b83d11f776368, type: 3}
+--- !u!65 &6335638979373380115
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2738263766769647394}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02925835, z: 0.035224922}
+  m_Center: {x: 0, y: 0.0016033214, z: 0.0076124626}
 --- !u!4 &6522265869453785107
 Transform:
   m_ObjectHideFlags: 0
@@ -13454,6 +13465,19 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &8430364215904334180
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 435859812181087815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.02, y: 0.02925835, z: 0.035224922}
+  m_Center: {x: 0, y: 0.0016033214, z: 0.0076124626}
 --- !u!33 &8432029654723996510
 MeshFilter:
   m_ObjectHideFlags: 0

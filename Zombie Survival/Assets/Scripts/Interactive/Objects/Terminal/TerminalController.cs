@@ -17,7 +17,7 @@ public class TerminalController : Interactive
 
     public override void OnInteractive()
     {
-        TerminalUI.Instance.TurnOnTerminalUI(this);
+        //TerminalScreen.Instance.TurnOnTerminalUI(this);
     }
 
     [System.Serializable]

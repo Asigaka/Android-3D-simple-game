@@ -11,24 +11,8 @@ public class PlayerInteraction : MonoBehaviour
 
     private Interactive interactive;
     private Interactive lastInteractive;
-    private PlayerInteractionUI interactionUI;
-
-    public static PlayerInteraction Instance;
 
     public Interactive Interactive { get => interactive; private set => interactive = value; }
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(this);
-
-        Instance = this;
-    }
-
-    private void Start()
-    {
-        interactionUI = PlayerInteractionUI.Instance;
-    }
 
     private void Update()
     {
@@ -58,7 +42,7 @@ public class PlayerInteraction : MonoBehaviour
                 lastInteractive = interactive;
             }
 
-            interactionUI.TurnOnInteractiveCrosshair(interactive.Name);
+            //interactionUI.TurnOnInteractiveCrosshair(interactive.Name);
         }
         else if (lastInteractive != null)
         {
@@ -67,7 +51,7 @@ public class PlayerInteraction : MonoBehaviour
         }
         else
         {
-            interactionUI.TurnOffInteractiveCrosshair();
+            //interactionUI.TurnOffInteractiveCrosshair();
         }
     }
 

@@ -18,7 +18,7 @@ public class MonologsController : MonoBehaviour
 
     private void ShowMonologs()
     {
-        MonologsUI.Instance.ShowMonolog(monologsQueue[0].MonologText);
+        //MonologsUI.Instance.ShowMonolog(monologsQueue[0].MonologText);
         monologsQueue.RemoveAt(0);
     }
 
@@ -32,7 +32,7 @@ public class MonologsController : MonoBehaviour
             }
             else
             {
-                MonologsUI.Instance.ClearMonologText();
+                //MonologsUI.Instance.ClearMonologText();
                 localMonologsTimer = 0;
             }
               

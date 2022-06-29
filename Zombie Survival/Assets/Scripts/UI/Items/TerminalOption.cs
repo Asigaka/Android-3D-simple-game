@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TerminalsOption : MonoBehaviour
+public class TerminalOption : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI optionLabelText;
 
@@ -23,9 +23,9 @@ public class TerminalsOption : MonoBehaviour
 
     public void OnClick()
     {
-        if (optionWithMessage != null)
-            TerminalUI.Instance.ShowMessageText(optionWithMessage.OptionMessage);
+        /*if (optionWithMessage != null)
+            TerminalScreen.Instance.ShowMessageText(optionWithMessage.OptionMessage);
         else
-            optionWithEvent.OptionEvent.Invoke();
+            optionWithEvent.OptionEvent.Invoke();*/
     }
 }

@@ -1,8 +1,9 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIInGameObject : MonoBehaviour
+public abstract class UIScreen : MonoBehaviour
 {
-    public UIInGameObjectType Type;
+    public UIType Type;
 }

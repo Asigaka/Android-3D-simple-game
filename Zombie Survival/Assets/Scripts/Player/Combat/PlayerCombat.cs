@@ -13,21 +13,11 @@ public class PlayerCombat : MonoBehaviour
     [SerializeField] private float localReloadTimer;
     [SerializeField] private int ammoInInventoryAmount;
 
-    private PlayerCombatUI combatUI;
-
-    public static PlayerCombat Instance;
-
-    private void Awake()
-    {
-        if (Instance != null)
-            Destroy(Instance);
-
-        Instance = this;
-    }
+    private HUDScreen hud;
 
     private void Start()
     {
-        combatUI = PlayerCombatUI.Instance; 
+        hud = UIManager.Instance.HUD; 
     }
 
     public void EquipWeapon(WeaponModel model)
@@ -36,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
         {
             curWeapon = model;
             CheckAmmoInInventory();
-            combatUI.TurnOnUI();
+            //combatUI.TurnOnUI();
             curWeapon.WeaponRateOfFired = true;
         }
     }
@@ -44,7 +34,7 @@ public class PlayerCombat : MonoBehaviour
     public void OnTakeOffWeapon()
     {
         curWeapon = null;
-        combatUI.TurnOffUI();
+        //combatUI.TurnOffUI();
     }
 
     private void Update()
@@ -70,13 +60,13 @@ public class PlayerCombat : MonoBehaviour
               // hit.rigidbody.AddForce(-hit.normal * currentWeapon.ImpactForce);
             }
 
-            combatUI.TurnOnCrosshair();
+            //combatUI.TurnOnCrosshair();
 
             Shoot(hit.collider.GetComponent<Health>());
         }
         else
         {
-            combatUI.TurnOffCrosshair();
+            //combatUI.TurnOffCrosshair();
         }
     }
 
@@ -114,7 +104,7 @@ public class PlayerCombat : MonoBehaviour
         if (curWeapon != null)
         {
             ammoInInventoryAmount = ItemsHander.GetItemAmountInPlayer(curWeapon.Info);
-            combatUI.UpdateUI(curWeapon.AmmoInMagazinAmount, ammoInInventoryAmount);
+            //combatUI.UpdateUI(curWeapon.AmmoInMagazinAmount, ammoInInventoryAmount);
         }
     }
 

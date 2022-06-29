@@ -1,9 +1,8 @@
+using Enums;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Side { Left, Right }
-public enum GameState { Playing, Menu, Pause, InteractiveUI}
 public class GameStateController : MonoBehaviour
 {
     [SerializeField] private GameState startState;
