@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1acb09870d9739469e6127c2ac050da, type: 3}
+  m_Name: pistol
+  m_EditorClassIdentifier: 
+  ItemModel: {fileID: 7660499561774001728, guid: b5344e8747d4c8b4eb89c369f5c0f632, type: 3}
+  Sprite: {fileID: 0}
+  Name: "\u041F\u0438\u0441\u0442\u043E\u043B\u0435\u0442"
+  Description: "\u0414\u043E\u0441\u0442\u0430\u0442\u043E\u0447\u043D\u043E \u043C\u043E\u0449\u043D\u044B\u0439
+    \u043E\u0445\u0440\u0430\u043D\u043D\u044B\u0439 \u043F\u0438\u0441\u0442\u043E\u043B\u0435\u0442.
+    \u041F\u043E\u043C\u043E\u0436\u0435\u0442 \u0440\u0430\u0437\u043E\u0431\u0440\u0430\u0442\u044C\u0441\u044F
+    \u0441 \u0431\u043E\u043B\u044C\u0448\u0438\u043D\u0441\u0442\u0432\u043E\u043C
+    \u0432\u0440\u0430\u0433\u043E\u0432"
+  Type: 2
+  WeaponID: 1
+  Damage: 25
+  Range: 10
+  ReloadTime: 3
+  RateOfFire: 2
+  ShootingNoise: 5
+  AmmoInfo: {fileID: 11400000, guid: 153a8a47ac7a70a45b245b1dcfd3339d, type: 2}
+  MagazineSize: 6

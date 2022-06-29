@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.084, y: 1.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6990817452856931578}
   m_RootOrder: 0
@@ -43,8 +44,8 @@ GameObject:
   - component: {fileID: 7962439356132320291}
   - component: {fileID: 2772240859422307843}
   - component: {fileID: 8667736013272732325}
-  - component: {fileID: 8704508799503576387}
   - component: {fileID: 8835988519323439915}
+  - component: {fileID: 238938678452822589}
   m_Layer: 0
   m_Name: pistol
   m_TagString: Untagged
@@ -62,6 +63,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.403, y: 1.9111149, z: 9.51699}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8597440380726538154}
   m_Father: {fileID: 0}
@@ -86,6 +88,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -155,20 +158,6 @@ MonoBehaviour:
     ItemInfo: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
     Count: 1
     State: 2
---- !u!64 &8704508799503576387
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7660499561774001728}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 2e10bb48fb2a9494abb7cdd5abfc9fbd, type: 2}
 --- !u!114 &8835988519323439915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,9 +171,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Info: {fileID: 11400000, guid: 72733a07e9ee15943bf197ce987fac52, type: 2}
+  WeaponInfo: {fileID: 0}
   FirePoint: {fileID: 8597440380726538154}
   ShootImpact: {fileID: 7850749535937348312, guid: 1e45def4b4de6df42bc78fae282e8db9, type: 3}
   AmmoInMagazinAmount: 0
   WeaponReloaded: 0
   WeaponRateOfFired: 1
   LocalRateOfFireTimer: 0
+--- !u!65 &238938678452822589
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7660499561774001728}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 5.531801, y: 3.5838485, z: 0.96138847}
+  m_Center: {x: 1.1954185, y: -0.119187534, z: 0.00000008940697}

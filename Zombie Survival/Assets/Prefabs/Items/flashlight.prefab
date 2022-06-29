@@ -27,6 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6214906885275872026}
   m_RootOrder: 0
@@ -105,8 +106,8 @@ GameObject:
   - component: {fileID: 6166552547332187485}
   - component: {fileID: 1922718042140782380}
   - component: {fileID: 1992366597270469113}
-  - component: {fileID: 1354591283}
   - component: {fileID: 3433201868583143731}
+  - component: {fileID: 6399743559890211520}
   m_Layer: 0
   m_Name: flashlight
   m_TagString: Untagged
@@ -124,6 +125,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -24.82125, y: 1.0000031, z: 9.974115}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6608350638189262347}
   m_Father: {fileID: 0}
@@ -148,6 +150,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -200,20 +203,6 @@ MonoBehaviour:
   destroyCombinedChildren: 1
   folderPath: Prefabs/CombinedMeshes
   meshFiltersToSkip: []
---- !u!64 &1354591283
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6734034069372219808}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: 25220f6d70d23ef45ac53226020ad92e, type: 2}
 --- !u!114 &3433201868583143731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,3 +219,16 @@ MonoBehaviour:
     ItemInfo: {fileID: 11400000, guid: 22b4b958c3728bc40b7625e2362161db, type: 2}
     Count: 1
     State: 2
+--- !u!65 &6399743559890211520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6734034069372219808}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7320507, y: 1.9999998, z: 4.144076}
+  m_Center: {x: -0.000000029802322, y: 0.00000020861626, z: 0.14026761}
